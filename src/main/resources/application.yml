@@ -1,0 +1,19 @@
+# Server设置
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    suffix: .html
+    content-type: text/html
+    cache: false
+  http:
+    multipart:
+      max-file-size: 10Mb
+# ImageUtil默认配置
+imageUtil:
+  fontName: 宋体
+  fontSize: 36
+  alpha: 0.4
+  carelessness: true
