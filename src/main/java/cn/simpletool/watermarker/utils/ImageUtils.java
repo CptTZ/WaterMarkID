@@ -9,10 +9,7 @@ import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * 图片处理工具类
@@ -32,12 +29,25 @@ public class ImageUtils {
     private  float alpha;
     @Value("${imageUtil.carelessness}")
     private boolean carelessness;
-    public  BufferedImage pressText(String pressText, InputStream srcImg) {
+    private static final String OUTPUT_FORMAT = "JPG";
+
+    public boolean waterMark(String markText,InputStream sourceImage,OutputStream targetImage){
+        return waterMark(markText,sourceImage,targetImage,fontName,fontSize,alpha,carelessness);
+    }
+    public boolean waterMark(String markText, InputStream sourceImage, OutputStream targetImage, String fontName, int fontSize, float alpha, boolean carelessness){
+        BufferedImage bufferedImage = pressText(markText,sourceImage,fontName,fontSize,alpha,carelessness);
+        try {
+            return ImageIO.write(bufferedImage,"JPG",targetImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private  BufferedImage pressText(String pressText, InputStream srcImg,String fontName,int fontSize,float alpha,boolean carelessness) {
         try {
             Image src = ImageIO.read(srcImg);
-            //图片宽度
             int width = src.getWidth(null);
-            //图片高度
             int height = src.getHeight(null);
 
             BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -74,7 +84,7 @@ public class ImageUtils {
             // step in y direction is calc'ed using pythagoras + 5 pixel padding
             double yStep = Math.sqrt(textWidth * textWidth / 2) + 5;
             // step over image rendering watermark text
-            for (double x = -textHeight * 3; x < image.getWidth(); x += (textHeight * 3)) {
+            for (double x = -textWidth * 3; x < image.getWidth(); x += (textHeight * 3)) {
                 double y = -yStep;
                 for (; y < image.getHeight(); y += yStep) {
                     g2d.draw(rotatedText);
@@ -86,7 +96,6 @@ public class ImageUtils {
                 }
                 g2d.translate(textHeight * 3, -(y + yStep));
             }
-
             g2d.dispose();
             return image;
         } catch (IIOException e) {

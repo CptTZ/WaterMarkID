@@ -27,13 +27,6 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public boolean imageMarker(InputStream srcImage, String markText, OutputStream outputStream) {
-        try {
-            BufferedImage targetImage = imageUtils.pressText(markText, srcImage);
-            boolean result = ImageIO.write(targetImage, "JPG", outputStream);
-            return result;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return imageUtils.waterMark(markText,srcImage,outputStream);
     }
 }
