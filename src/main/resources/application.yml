@@ -1,6 +1,6 @@
 # Server设置
 server:
-  port: 8080
+  port: 80
 spring:
   thymeleaf:
     prefix: classpath:/templates/
@@ -14,6 +14,6 @@ spring:
 # ImageUtil默认配置
 imageUtil:
   fontName: 宋体
-  fontSize: 36
-  alpha: 0.4
+  fontSize: 26
+  alpha: 0.45
   carelessness: true

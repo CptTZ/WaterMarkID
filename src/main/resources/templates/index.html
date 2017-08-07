@@ -1,54 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="zh">
     <meta charset="UTF-8"/>
-    <title>水水的证件—SimpleTool</title>
+    <title>水水的证件 | Simple Tool</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
     <style>
-        .get {
-            text-align: center;
-            padding: 100px 0;
+        body {
+            background-color: #333333;
+            color: #FFFFFF;
         }
 
-        .get-title {
-            font-size: 200%;
-            border: 2px solid #fff;
-            padding: 20px;
-            display: inline-block;
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 300%;
+            margin-top: 30px;
+            font-weight: lighter;
+        }
+
+        .header p {
+            font-size: 16px;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 1rem 0 1rem 0;
+        }
+        .am-form-label{
+            text-align: center;
+        }
+        .example img{
+            display: block;
+            margin: auto;
+            max-height: 500px;
+            max-width: 80%;
+        }
+        .example .text{
+            text-align: center;
+        }
+        .am-form-horizontal .am-form-label{
+            text-align: center;
         }
     </style>
 </head>
-<body style="background: #81D4FA;color: #FFFFFF">
-<div class="get am-container">
+<body>
+<div class="header am-container">
     <div class="am-g">
-        <div class="am-u-lg-12">
-            <h1 class="get-title">水水的证件</h1>
-            <p>在线图片水印添加，保障你的证件使用安全</p>
-            <p>
-            <form class="am-form" action="/api/image/watermark" method="post" enctype="multipart/form-data">
-                <fieldset>
-                    <div class="am-form-group">
-                        <input type="text" name="markText" class="am-form-field am-radius" id="doc-ipt-email-1"
-                               value="证件仅供XXX使用"/>
-                    </div>
-                    <div class="am-form-group am-form-file">
-                        <button type="button" class="am-btn am-btn-block am-btn-primary">
-                            <i class="am-icon-cloud-upload"></i> 点击选择需要添加水印的图片
-                        </button>
-                        <input id="doc-form-file" type="file" name="srcImage" multiple="multiple"/>
-                        <div id="file-list"></div>
-                    </div>
-                    <button type="submit" class="am-btn am-btn-primary am-btn-block">生成！</button>
-                </fieldset>
-            </form>
-            </p>
-        </div>
+        <h1>水水的证件</h1>
+        <p>线上图片水印添加服务<br/>本网站不会对用户身份证照片进行存储，请放心使用</p>
     </div>
 </div>
-<div class="am-topbar am-topbar-inverse am-topbar-fixed-bottom">
-    <h1 class="am-topbar-brand">
-        <a href="#">Simple Tool</a>
-    </h1>
+<div class="am-container">
+    <div class="am-u-lg-12 am-u-md-8 am-u-sm-centered">
+        <form class="am-form am-form-horizontal" action="/api/image/watermark" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <div class="am-form-group">
+                    <label for="markText" class="am-u-lg-2 am-u-sm-3 am-form-label">水印文字</label>
+                    <div class="am-u-lg-10 am-u-sm-9">
+                        <input  name="markText" class="am-form-field am-radius" id="markText"
+                                value="此证件仅供办理xx业务使用，他用无效"/>
+                    </div>
+                </div>
+                <div class="am-form-group am-form-file am-u-sm-12">
+                    <button type="button" class="am-btn am-btn-block">
+                        <i class="am-icon-cloud-upload"></i> 点击选择需要添加水印的图片
+                    </button>
+                    <input id="doc-form-file" type="file" name="srcImage" multiple="multiple"/>
+                    <div id="file-list"></div>
+                </div>
+                <div class="am-form-group am-form-file am-u-sm-12">
+                    <button type="submit" class="am-btn am-btn-primary am-btn-block">生成！</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="am-u-lg-12 am-u-md-8 am-u-sm-centered example">
+        <img src="/assets/image/example.jpg" />
+        <div class="text">水印效果示意图</div>
+    </div>
+</div>
+<div class="am-container">
+    <p class="footer">© 2017 Simple Tool. 联系我们:<a href="mailto:simpletool@126.com">simpletool@126.com</a></p>
 </div>
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
@@ -72,5 +111,4 @@
     });
 </script>
 </body>
-
 </html>
