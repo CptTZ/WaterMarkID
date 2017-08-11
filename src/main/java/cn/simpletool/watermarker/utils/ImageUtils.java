@@ -1,13 +1,12 @@
 package cn.simpletool.watermarker.utils;
 
-import org.springframework.beans.factory.annotation.Value;
+import cn.simpletool.watermarker.config.ImageUtilConfigurationProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -21,22 +20,17 @@ import java.io.*;
 @Component
 public class ImageUtils {
 
-    @Value("${imageUtil.fontName}")
-    private String fontName;
-    @Value("${imageUtil.fontSize}")
-    private int fontSize;
-    @Value("${imageUtil.alpha}")
-    private float alpha;
-    @Value("${imageUtil.carelessness}")
-    private boolean carelessness;
+    @Autowired
+    private ImageUtilConfigurationProperties imageUtilConfigurationProperties;
+
     private static final String OUTPUT_FORMAT = "JPG";
 
     public boolean waterMark(String markText, InputStream sourceImage, OutputStream targetImage) {
-        return waterMark(markText, sourceImage, targetImage, fontName, fontSize, alpha, carelessness);
+        return waterMark(markText, sourceImage, targetImage, imageUtilConfigurationProperties.getFontName(), imageUtilConfigurationProperties.getFontSize(), imageUtilConfigurationProperties.getAlpha());
     }
 
-    public boolean waterMark(String markText, InputStream sourceImage, OutputStream targetImage, String fontName, int fontSize, float alpha, boolean carelessness) {
-        BufferedImage bufferedImage = pressText(markText, sourceImage, fontName, fontSize, alpha, carelessness);
+    public boolean waterMark(String markText, InputStream sourceImage, OutputStream targetImage, String fontName, int fontSize, float alpha) {
+        BufferedImage bufferedImage = pressText(markText, sourceImage, fontName, fontSize, alpha);
         try {
             return ImageIO.write(bufferedImage, "JPG", targetImage);
         } catch (IOException e) {
@@ -45,7 +39,7 @@ public class ImageUtils {
         return false;
     }
 
-    private BufferedImage pressText(String pressText, InputStream src, String fontName, int fontSize, float alpha, boolean carelessness) {
+    private BufferedImage pressText(String pressText, InputStream src, String fontName, int fontSize, float alpha) {
         try {
             Image srcImage = ImageIO.read(src);
             BufferedImage targetImage = new BufferedImage(srcImage.getWidth(null), srcImage.getHeight(null), BufferedImage.TYPE_INT_RGB);
@@ -72,7 +66,6 @@ public class ImageUtils {
                     g.drawString(pressText, x, y);
                 }
             }
-
             // 9、释放资源
             g.dispose();
             return targetImage;
