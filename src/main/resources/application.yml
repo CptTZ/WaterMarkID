@@ -23,7 +23,7 @@ watermark:
   # 水印工厂相关配置
   imageUtil:
     # 字体
-    fontName: "宋体"
+    fontName: 宋体
     # 字号
     fontSize: 26
     # 透明度

@@ -32,7 +32,7 @@ public class ImageUtils {
     public boolean waterMark(String markText, InputStream sourceImage, OutputStream targetImage, String fontName, int fontSize, float alpha) {
         BufferedImage bufferedImage = pressText(markText, sourceImage, fontName, fontSize, alpha);
         try {
-            return ImageIO.write(bufferedImage, "JPG", targetImage);
+            return ImageIO.write(bufferedImage, OUTPUT_FORMAT, targetImage);
         } catch (IOException e) {
             e.printStackTrace();
         }

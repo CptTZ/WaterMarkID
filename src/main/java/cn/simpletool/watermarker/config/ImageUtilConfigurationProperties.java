@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-@ConfigurationProperties(prefix = "waterMarker.imageUtil")
+@ConfigurationProperties(prefix = "watermark.imageUtil")
 public class ImageUtilConfigurationProperties {
     private String fontName;
     private int fontSize;

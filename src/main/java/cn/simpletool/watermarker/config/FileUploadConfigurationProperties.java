@@ -13,7 +13,7 @@ import java.util.List;
  * @version 1.0.0
  * Created on 2017/8/8
  */
-@ConfigurationProperties(prefix = "waterMarker.upload")
+@ConfigurationProperties(prefix = "watermark.upload")
 @Component
 @Data
 public class FileUploadConfigurationProperties {

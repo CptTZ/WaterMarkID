@@ -37,7 +37,7 @@ public class ImageController {
             String fileType = srcImageName.substring(srcImageName.lastIndexOf(".") + 1).toLowerCase() + "";
             if (!fileUploadConfigurationProperties.getAllowImageType().contains(fileType)) {
                 response.sendError(500);
-                return;
+                throw new RuntimeException("格式错误");
             }
             response.setContentType("image/jpeg");
             String fileName = "SimpleTool" + System.currentTimeMillis() + ".jpg";
