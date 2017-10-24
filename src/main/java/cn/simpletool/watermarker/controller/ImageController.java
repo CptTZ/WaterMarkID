@@ -2,6 +2,7 @@ package cn.simpletool.watermarker.controller;
 
 import cn.simpletool.watermarker.config.FileUploadConfigurationProperties;
 import cn.simpletool.watermarker.service.ImageService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/api/image")
+@Slf4j
 public class ImageController {
 
     @Resource
@@ -33,6 +35,7 @@ public class ImageController {
     @RequestMapping(value = "/watermark", method = RequestMethod.POST)
     public void imageWaterMarker(@RequestParam("srcImage") MultipartFile srcImage, String markText, HttpServletResponse response) {
         try {
+            log.info("imageWaterMarker into Handle");
             String srcImageName = srcImage.getOriginalFilename();
             String fileType = srcImageName.substring(srcImageName.lastIndexOf(".") + 1).toLowerCase() + "";
             if (!fileUploadConfigurationProperties.getAllowImageType().contains(fileType)) {
