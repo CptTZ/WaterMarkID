@@ -1,0 +1,38 @@
+body {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 300%;
+    margin-top: 30px;
+    font-weight: lighter;
+}
+
+.header p {
+    font-size: 16px;
+}
+
+.footer {
+    text-align: center;
+    margin: 1rem 0 1rem 0;
+}
+.am-form-label{
+    text-align: center;
+}
+.example img{
+    display: block;
+    margin: auto;
+    max-height: 500px;
+    max-width: 80%;
+}
+.example .text{
+    text-align: center;
+}
+.am-form-horizontal .am-form-label{
+    text-align: center;
+}

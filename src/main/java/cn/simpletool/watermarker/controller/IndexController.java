@@ -21,4 +21,9 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/index.html")
+    public String indexUseHtml5(){
+        return "index_new";
+    }
 }
