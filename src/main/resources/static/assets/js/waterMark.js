@@ -13,8 +13,6 @@
       color: "#000",
       width: 500,
       height: 500,
-      overHeight: 100,
-      overWidth: 100,
       imgUrl: "",
       id: "",
       parent: null
@@ -65,10 +63,10 @@
     getTextOffset();
     var xSpace = Config.xSpace,
       ySpace = Config.ySpace,
-      overHeight = Config.overHeight,
-      overWidth = Config.overWidth;
+      overHeight = Config.height,
+      overWidth = Config.width;
     for (var y = Config.yStart; y < Config.height - textHeight + overHeight; y += ySpace + textHeight) {
-      for (var x = Config.xStart; x < Config.width - textWidth + overWidth; x += xSpace + textWidth + overWidth) {
+      for (var x = Config.xStart; x < Config.width - textWidth + overWidth; x += xSpace + textWidth) {
         createMark(x, y);
       }
     }
