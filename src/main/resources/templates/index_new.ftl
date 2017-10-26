@@ -24,7 +24,7 @@
                     <input id="doc-form-file" type="file" name="srcImage" multiple="multiple" accept="image/png,image/jpg,image/jpeg,image/bmp"/>
                 </div>
                 <div class="am-form-group am-form-file am-u-sm-12">
-                    <button type="button" class="am-btn am-btn-primary am-round am-btn-block" id="download">生成水印 </button>
+                    <button type="button" class="am-btn am-btn-primary am-round am-btn-block">生成水印 </button>
                 </div>
             </fieldset>
         </form>
@@ -34,6 +34,7 @@
         <div class="text">水印效果示意图</div>
     </div>
     <canvas id="myCanvas"></canvas>
+    <a id="download">点击下载</a>
 </div>
 <div class="am-container">
     <p class="footer">© 2017 Simple Tool. 联系我们:<a href="mailto:simpletool@126.com">simpletool@126.com</a></p>

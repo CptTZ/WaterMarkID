@@ -13,6 +13,8 @@
       color: "#000",
       width: 500,
       height: 500,
+      overHeight: 100,
+      overWidth: 100,
       imgUrl: "",
       id: "",
       parent: null
@@ -63,9 +65,10 @@
     getTextOffset();
     var xSpace = Config.xSpace,
       ySpace = Config.ySpace,
-      overHeight = 100;
+      overHeight = Config.overHeight,
+      overWidth = Config.overWidth;
     for (var y = Config.yStart; y < Config.height - textHeight + overHeight; y += ySpace + textHeight) {
-      for (var x = Config.xStart; x < Config.width - textWidth; x += xSpace + textWidth) {
+      for (var x = Config.xStart; x < Config.width - textWidth + overWidth; x += xSpace + textWidth + overWidth) {
         createMark(x, y);
       }
     }
@@ -113,10 +116,10 @@
 
   function createMark(x, y) {
     Context.save();
-    Context.font = "normal normal normal"+ Config.size + "px Arial";
+    Context.font = "normal normal normal "+ Config.size + "px Arial";
     Context.fillStyle = Config.color;
     Context.zIndex = 1;
-    Context.rotate(-Math.PI / 12);
+    Context.rotate(Math.PI/180 * Config.rotate);
     Context.globalAlpha = Config.opacity;
     Context.fillText(Config.text, x, y);
     Context.restore();
