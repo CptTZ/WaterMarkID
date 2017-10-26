@@ -1,10 +1,13 @@
 package cn.simpletool.watermarker.controller;
 
+import cn.simpletool.watermarker.common.BrowserUtils;
 import cn.simpletool.watermarker.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ZhanJingbo
@@ -14,16 +17,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private ImageUtils imageUtils;
+    /**
+     * 后端处理的Index View名
+     */
+    private static final String BACK_INDEX_PAGE = "index";
+
+    /**
+     * 前端处理的Index View名
+     */
+    private static final String FRONT_INDEX_PAGE = "index_new";
 
     @RequestMapping("/")
-    public String index(){
-        return "index";
+    public String index(HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent");
+        String indexViewName = FRONT_INDEX_PAGE;
+        if (BrowserUtils.isIe(userAgent)) {
+            indexViewName = BACK_INDEX_PAGE;
+        }
+        return indexViewName;
     }
 
     @RequestMapping("/index.html")
-    public String indexUseHtml5(){
+    public String indexUseHtml5() {
         return "index_new";
     }
 }
