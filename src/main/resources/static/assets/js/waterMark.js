@@ -1,5 +1,5 @@
 ! function (win, callback) {
-  win.WaterMark = callback();
+  win.WaterMark = callback;
 }(window, function () {
   var Config = {
       text: "watermark",
@@ -20,15 +20,13 @@
     Parent = null;
     Context = null,
     textWidth = -1,
-    textHeight = -1,
-    markArr = [];
+    textHeight = -1;
 
   function mark(userConfig) {
     userConfig = userConfig || {};
     Config = extend(Config, userConfig);
 
-    getCanvas();
-    drawImg();
+    (getCanvas(),drawImg());
   }
 
   function extend(origin, target) {
@@ -124,19 +122,18 @@
   }
 
   function removeMarks() {
-    if (Container) {
-      for (var i = 0; i < markArr.length; i++) {
-        Container.removeChild(markArr.shift());
-      }
-    }
+    Context.clearRect(0, 0 ,Config.width, Config.height); 
   }
 
-  function reRendering() {
-    markArr.length && (removeMarks(), mark())
+  function reRendering(userConfig) {
+    removeMarks();
+    userConfig = userConfig || {};
+    Config = extend(Config, userConfig);
   }
 
 
   return {
-    mark: mark
+    mark: mark,
+    reRendering: reRendering
   };
 });
