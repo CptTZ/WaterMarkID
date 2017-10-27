@@ -14,14 +14,14 @@
                     <label for="markText" class="am-u-lg-2 am-u-sm-3 am-form-label">水印文字:</label>
                     <div class="am-u-lg-10 am-u-sm-9">
                         <input name="markText" class="am-form-field am-radius" id="markText"
-                               value="此证件仅供办理xx业务使用，他用无效"/>
+                               value="此证件仅供办理XX业务使用，他用无效"/>
                     </div>
                 </div>
                 <div class="am-form-group am-form-file am-u-sm-12">
                     <button type="button" class="am-btn am-btn-default am-btn-block am-round">
-                        <i class="am-icon-cloud-upload"></i> 上传证件图片
+                        <i class="am-icon-cloud-upload"></i> 选择证件图片
                     </button>
-                    <input id="doc-form-file" type="file" name="srcImage" multiple="multiple"
+                    <input id="doc-form-file" type="file" name="srcImage"
                            accept="image/png,image/jpg,image/jpeg,image/bmp"/>
                 </div>
                 <div class="am-form-group am-form-file am-u-sm-12">

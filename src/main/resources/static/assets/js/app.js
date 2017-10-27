@@ -13,27 +13,33 @@ $(function () {
 
             image.src = data;
             image.onload = function () {
+
                 WaterMark.mark({
                     text: $("#markText").val(),
                     id: "myCanvas",
                     color: '#fff',
-                    xStart: 0,
-                    yStart: -1000,
+                    xStart: -(image.height),
+                    yStart: -(image.width),
                     xSpace: 20,
                     ySpace: 30,
                     size: 18,
                     rotate: 45,
-                    opacity: 0.8,
+                    opacity: 0.6,
                     width: image.width,
                     height: image.height,
                     imgUrl: data
                 });
+                sysImgSrc();
             };
-            setTimeout(function () {
-                $("#result").attr("src", document.getElementById("myCanvas").toDataURL("image/png"));
-            }, 100);
         }
+    });
 
+    $("#markText").on("change", function (e) {
+        var text = e.target.value;
+        WaterMark.mark({
+            text: text
+        });
+        sysImgSrc();
     });
 
     $('#download').on('click', function () {
@@ -44,4 +50,11 @@ $(function () {
         link.href = document.getElementById(canvasId).toDataURL();
         link.download = filename;
     }
+
+    function sysImgSrc(){
+        setTimeout(function () {
+            $("#result").attr("src", document.getElementById("myCanvas").toDataURL("image/png"));
+        }, 0);
+    }
+
 });
