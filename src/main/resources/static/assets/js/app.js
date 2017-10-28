@@ -2,8 +2,6 @@ $(function () {
   var waterMark = new WaterMark();
   var file = null;
 
-  window.isSupportDownload = 'download' in document.createElement('a');
-
   $('#doc-form-file').on('change', function (e) {
     file = e.target.files[0];
     var reader = new FileReader();
@@ -46,6 +44,12 @@ $(function () {
       text: text
     });
     sysImgSrc();
+  });
+  $("#markText").on("focus", function (e) {
+    $(e.target).css('color', '#000');
+  });
+  $("#markText").on("blur", function (e) {
+    $(e.target).css('color', '#555');
   });
 
   $('#download').on('click', function () {

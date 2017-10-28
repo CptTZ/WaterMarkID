@@ -28,6 +28,10 @@
                 <div class="am-form-group am-form-file am-u-sm-12">
                     <a type="button" id="download" class="am-btn am-btn-primary am-round am-btn-block">保存图片</a>
                 </div>
+                <#elseif isMobile ??>
+                  <div class="text">长按效果图保存到相册</div>
+                <#else>
+                  <div class="text">鼠标右键点击效果图保存到本地</div>
                 </#if>
             </fieldset>
         </form>
