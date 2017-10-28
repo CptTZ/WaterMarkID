@@ -61,10 +61,11 @@
     getTextOffset();
     var xSpace = Config.xSpace,
       ySpace = Config.ySpace,
-      overHeight = Config.height,
-      overWidth = Config.width;
-    for (var y = Config.yStart; y < Config.height - textHeight + overHeight; y += ySpace + textHeight) {
-      for (var x = Config.xStart; x < Config.width - textWidth + overWidth; x += xSpace + textWidth) {
+      overHeight = textHeight + ySpace,
+      overWidth = textWidth + xSpace,
+      squareWidth = 0.72 * (Config.width + Config.height);
+    for (var y = Config.yStart; y < squareWidth + overHeight; y += ySpace + textHeight) {
+      for (var x = Config.xStart; x < squareWidth + overWidth; x += xSpace + textWidth) {
         createMark(x, y);
       }
     }
