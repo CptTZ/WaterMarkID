@@ -24,9 +24,11 @@
                     <input id="doc-form-file" type="file" name="srcImage"
                            accept="image/png,image/jpg,image/jpeg,image/bmp"/>
                 </div>
+                <#if isSupportDownload??>
                 <div class="am-form-group am-form-file am-u-sm-12">
                     <a type="button" id="download" class="am-btn am-btn-primary am-round am-btn-block">保存图片</a>
                 </div>
+                </#if>
             </fieldset>
         </form>
     </div>
