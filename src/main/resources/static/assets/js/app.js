@@ -23,12 +23,13 @@ $(function () {
           xStart: -(image.height),
           yStart: -(image.width),
           rotate: 45,
-          opacity: 0.3,
+          opacity: 0.4,
           width: image.width,
           height: image.height,
           imgUrl: data
         };
-        $.extend(config, getSomeConfig(image.height));
+        var height = Math.min(image.width, image.height);
+        $.extend(config, getSomeConfig(height));
 
         waterMark.mark(config);
         sysImgSrc();
@@ -51,9 +52,14 @@ $(function () {
   });
 
   function downloadCanvas(link, canvasId, filename) {
-    link.href = document.getElementById(canvasId).toDataURL();
+    link.href = document.getElementById(canvasId).toDataURL('image/png');
     link.download = filename;
   }
+
+  // function downloadCanvas(link, canvasId, filename){
+  //   var data = document.getElementById(canvasId).toDataURL('image/png').replace("image/png", "image/octet-stream");
+  //   link.href = data;
+  // }
 
   function sysImgSrc() {
     setTimeout(function () {

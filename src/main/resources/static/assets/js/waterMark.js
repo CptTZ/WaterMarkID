@@ -94,11 +94,7 @@
         ["opacity", Config.opacity],
         ["filter", "alpha(opacity=" + 100 * Config.opacity + ")"],
         ["pointer-events", "none"],
-        ["-webkit-transform", "rotate(-" + Config.rotate + "deg)"],
-        ["-moz-transform", "rotate(-" + Config.rotate + "deg)"],
-        ["-o-transform", "rotate(-" + Config.rotate + "deg)"],
-        ["-ms-transform", "rotate(-" + Config.rotate + "deg)"],
-        ["transform", "rotate(-" + Config.rotate + "deg)"]
+        ["white-space", "nowrap"],
       ],
       styleArr = [],
       cssText = "";
