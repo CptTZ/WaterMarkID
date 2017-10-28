@@ -3,7 +3,7 @@
 <div class="header am-container">
     <div class="am-g">
         <h1>水水的证件</h1>
-        <p>本网站不会对用户身份证照片进行存储，请放心使用</p>
+        <p>加水印操作在本地完成，网站不会存储任何证件信息，请放心使用</p>
     </div>
 </div>
 <div class="am-container">
@@ -19,13 +19,13 @@
                 </div>
                 <div class="am-form-group am-form-file am-u-sm-12">
                     <button type="button" class="am-btn am-btn-default am-btn-block am-round">
-                        <i class="am-icon-cloud-upload"></i> 选择证件图片
+                        选择证件图片
                     </button>
                     <input id="doc-form-file" type="file" name="srcImage"
                            accept="image/png,image/jpg,image/jpeg,image/bmp"/>
                 </div>
                 <div class="am-form-group am-form-file am-u-sm-12">
-                    <a type="button" id="download" class="am-btn am-btn-primary am-round am-btn-block"><i class="am-icon-save"></i>  保存图片</a>
+                    <a type="button" id="download" class="am-btn am-btn-primary am-round am-btn-block">保存图片</a>
                 </div>
             </fieldset>
         </form>
