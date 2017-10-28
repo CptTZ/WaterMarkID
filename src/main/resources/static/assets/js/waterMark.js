@@ -125,6 +125,7 @@
     removeMarks();
     userConfig = userConfig || {};
     Config = extend(Config, userConfig);
+    drawImg();
   }
 
 
