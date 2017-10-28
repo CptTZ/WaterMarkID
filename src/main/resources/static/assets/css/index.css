@@ -2,7 +2,9 @@ body {
     background-color: #333333;
     color: #FFFFFF;
 }
-
+.am-btn.am-round {
+    border-radius: 4px;
+}
 .header {
     text-align: center;
 }
