@@ -11,8 +11,8 @@
         <form class="am-form am-form-horizontal">
             <fieldset>
                 <div class="am-form-group">
-                    <label for="markText" class="am-u-lg-2 am-u-sm-3 am-form-label">水印文字:</label>
-                    <div class="am-u-lg-10 am-u-sm-9">
+                    <label for="markText" class="am-u-lg-2 am-u-sm-12 am-form-label">水印文字:</label>
+                    <div class="am-u-lg-10 am-u-sm-12">
                         <input name="markText" class="am-form-field am-radius" id="markText"
                                value="此证件仅供办理XX业务使用，他用无效"/>
                     </div>
@@ -24,15 +24,11 @@
                     <input id="doc-form-file" type="file" name="srcImage"
                            accept="image/png,image/jpg,image/jpeg,image/bmp"/>
                 </div>
-                <#if isSupportDownload??>
-                <div class="am-form-group am-form-file am-u-sm-12">
+                <div class="am-form-group am-form-file am-u-sm-12" id="saveButton" style="display: none">
                     <a type="button" id="download" class="am-btn am-btn-primary am-round am-btn-block">保存图片</a>
                 </div>
-                <#elseif isMobile ??>
-                  <div class="text">长按效果图保存到相册</div>
-                <#else>
-                  <div class="text">鼠标右键点击效果图保存到本地</div>
-                </#if>
+                <div class="am-form-group am-form-file am-u-sm-12 am-alert" id="saveMethod1" style="display: none">长按下方效果图，保存到相册</div>
+                <div class="am-form-group am-form-file am-u-sm-12 am-alert" id="saveMethod2" style="display: none">鼠标右键点击效果图保存到本地</div>
             </fieldset>
         </form>
     </div>

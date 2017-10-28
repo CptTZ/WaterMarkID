@@ -20,11 +20,5 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
-
-         window.isSupportDownload = 'download' in document.createElement('a');
-         window.isMobile = isMobile();
-         function isMobile(){
-           return /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
-         }
     </script>
 </head>

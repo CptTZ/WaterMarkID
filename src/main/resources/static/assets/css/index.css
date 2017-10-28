@@ -40,3 +40,7 @@ body {
 #myCanvas{
     display: none;
 }
+#saveMethod1,#saveMethod2{
+    text-align: center;
+    border-radius: 4px;
+}
