@@ -31,8 +31,9 @@ $(function () {
                 var height = Math.min(image.width, image.height);
                 $.extend(config, getSomeConfig(height));
 
-                waterMark.mark(config);
-                sysImgSrc();
+                waterMark.mark(config).then(function(){
+                  sysImgSrc();
+                });
             };
         }
     });
@@ -42,8 +43,9 @@ $(function () {
         var text = e.target.value;
         waterMark.reRendering({
             text: text
-        });
-        sysImgSrc();
+        }).then(function(){
+          sysImgSrc();
+        }); 
     });
     $("#markText").on("focus", function (e) {
         $(e.target).css('color', '#000');
@@ -84,9 +86,7 @@ $(function () {
     }
 
     function sysImgSrc() {
-        setTimeout(function () {
-            $("#result").attr("src", document.getElementById("myCanvas").toDataURL("image/png"));
-        }, 0);
+      $("#result").attr("src", document.getElementById("myCanvas").toDataURL("image/png"));
     }
 
     function isImgNotUpload() {

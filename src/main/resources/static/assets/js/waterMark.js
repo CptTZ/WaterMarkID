@@ -26,7 +26,7 @@
     userConfig = userConfig || {};
     Config = extend(Config, userConfig);
 
-    (getCanvas(),drawImg());
+    return (getCanvas(),drawImg());
   }
 
   function extend(origin, target) {
@@ -49,12 +49,16 @@
   }
 
   function drawImg() {
+    //保证canvas加载完成
+    var defer = $.Deferred();
     var Img = new Image();
     Img.onload = function () {
       Context.drawImage(this, 0, 0, Config.width, Config.height);
       insertMarks();
+      defer.resolve();
     };
     Img.src = Config.imgUrl;
+    return defer.promise();
   }
 
   function insertMarks() {
@@ -126,7 +130,7 @@
     removeMarks();
     userConfig = userConfig || {};
     Config = extend(Config, userConfig);
-    drawImg();
+    return drawImg();
   }
 
 
