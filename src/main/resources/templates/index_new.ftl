@@ -3,7 +3,7 @@
 <div class="header am-container">
     <div class="am-g">
         <h1>水水的证件</h1>
-        <p>加水印操作在本地完成，网站不会存储任何证件信息，请放心使用</p>
+        <p>加水印操作在本地完成，任何证件信息均不会上传到网站，请放心使用</p>
     </div>
 </div>
 <div class="am-container">
