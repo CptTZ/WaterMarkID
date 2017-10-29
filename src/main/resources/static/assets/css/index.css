@@ -41,6 +41,8 @@ body {
     display: none;
 }
 #saveMethod1,#saveMethod2{
+    background: #333333;
+    border: none;
     text-align: center;
     border-radius: 4px;
 }
