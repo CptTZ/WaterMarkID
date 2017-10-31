@@ -1,5 +1,7 @@
 package cn.simpletool.watermarker.controller;
 
+import cn.simpletool.watermarker.common.LogMessageVo;
+import cn.simpletool.watermarker.common.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
+@RequestMapping("/api/log/")
 public class LogController {
 
-    @RequestMapping("/log")
-    public Boolean log(String logMessage) {
-        log.info(logMessage);
-        return true;
+    @RequestMapping("/")
+    public Response<Boolean> log(LogMessageVo logMessage) {
+        log.info(logMessage.toString());
+        return Response.result(Boolean.TRUE);
     }
 }
