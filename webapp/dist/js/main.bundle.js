@@ -31564,6 +31564,10 @@ var _index = __webpack_require__(388);
 
 var _index2 = _interopRequireDefault(_index);
 
+var _example = __webpack_require__(389);
+
+var _example2 = _interopRequireDefault(_example);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31615,23 +31619,13 @@ var Container = function (_React$Component) {
               {
                 theme: 'dark',
                 mode: 'horizontal',
-                defaultSelectedKeys: ['2'],
+                defaultSelectedKeys: ['1'],
                 style: { lineHeight: '64px' }
               },
               _react2.default.createElement(
                 _menu2.default.Item,
                 { key: '1' },
-                'nav 1'
-              ),
-              _react2.default.createElement(
-                _menu2.default.Item,
-                { key: '2' },
-                'nav 2'
-              ),
-              _react2.default.createElement(
-                _menu2.default.Item,
-                { key: '3' },
-                'nav 3'
+                '\u6C34\u6C34\u7684\u8BC1\u4EF6'
               )
             )
           )
@@ -31700,7 +31694,7 @@ var Container = function (_React$Component) {
                     )
                   )
                 ),
-                _react2.default.createElement('img', { src: '../../style/img/example.jpg', alt: '', className: 'img' }),
+                _react2.default.createElement('img', { src: _example2.default, alt: '', className: 'img' }),
                 _react2.default.createElement(
                   'p',
                   { className: 'desc' },
@@ -45631,6 +45625,12 @@ __webpack_require__(387);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/396bec7d.example.jpg";
 
 /***/ })
 /******/ ]);
