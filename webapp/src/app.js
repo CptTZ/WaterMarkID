@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import WaterMark from './page/watermark/index.jsx';
+import Container from './container.jsx';
 
 class App extends React.Component {
   render() {
     return (
-      <WaterMark />
+      <Container />
     );
   }
 }
