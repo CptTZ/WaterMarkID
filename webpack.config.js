@@ -1,25 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
+const config = require('./config');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const excludePath = path.resolve(__dirname, "node_modules");
-const webappPath = path.resolve(__dirname, "webapp");
-const srcPath = path.resolve(webappPath, "src");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  cache: true,
-  entry: path.resolve(srcPath, 'app.js'),
+  entry: path.resolve(config.jsDir, 'app.js'),
   output: {
-    path: path.resolve(webappPath, "dist"),
-    filename: 'js/[name].bundle.js'
+    path: config.distDir,
+    filename: 'js/[name]-[hash].js'
   },
   module: {
     loaders: [{
         test: /\.(js|jsx)$/,
         loader: "babel-loader",
-        include: [
-          path.join(__dirname, "client") //important for performance!
-        ],
         query: {
           cacheDirectory: true,
           presets: ['es2015', 'react'],
@@ -31,8 +26,8 @@ module.exports = {
             }]
           ]
         },
-        exclude: excludePath,
-        include: srcPath
+        exclude: path.resolve(__dirname, "node_modules"),
+        include: config.srcDir
       },
       {
         test: /\.(css|less)$/,
@@ -42,21 +37,24 @@ module.exports = {
         })
       },
       {　　　　　　
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'　　　　
+        test: /\.(png|jpe?g)$/,
+        loader: 'url-loader?limit=10000&name=images/[name]-[hash:8].[ext]'　　　　
       }
     ]
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: path.resolve(srcPath, 'index.html'),
+      template: path.resolve(config.srcDir, 'index.html'),
       filename: 'index.html',
       inject: true
     }),
-    new ExtractTextPlugin('style.css')
-    // new webpack.DllReferencePlugin({
-    //   context: __dirname,
-    //   manifest: require('./manifest.json'),
-    // })
+    new ExtractTextPlugin("css/[name].css", {
+      allChunks: true
+    }),
+    new CleanWebpackPlugin(['dist'], {
+      root: '', // An absolute path for the root  of webpack.config.js
+      verbose: true, // Write logs to console.
+      dry: false // Do not delete anything, good for testing.
+    })
   ]
 }
