@@ -12,12 +12,13 @@ $(function () {
         }
         reader.onload = function (e) {
             var data = e.target.result,
-                image = new Image();
+                image = new Image(),
+                text = $("#markText").val();
 
             image.src = data;
             image.onload = function () {
                 var config = {
-                    text: $("#markText").val(),
+                    text: text,
                     id: "myCanvas",
                     color: '#f9f9f9',
                     xStart: 0,
@@ -30,7 +31,7 @@ $(function () {
                 };
                 var height = Math.min(image.width, image.height);
                 $.extend(config, getSomeConfig(height));
-
+                statisticText(text);
                 waterMark.mark(config).then(function () {
                     sysImgSrc();
                 });
@@ -41,16 +42,11 @@ $(function () {
     $("#markText").on("change", function (e) {
         if (isImgNotUpload()) return false;
         var text = e.target.value;
+        statisticText(text);
         waterMark.reRendering({
             text: text
         }).then(function () {
             sysImgSrc();
-        });
-        $.ajax({
-            url: "/api/log",
-            data: {
-                logMessage: text
-            }
         });
     });
     $("#markText").on("focus", function (e) {
@@ -106,6 +102,15 @@ $(function () {
             ySpace: fontSize,
             size: fontSize
         };
+    }
+
+    function statisticText(text){
+      $.ajax({
+        url: "/api/log",
+        data: {
+            logMessage: text
+        }
+    });
     }
 
 });
