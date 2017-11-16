@@ -2,7 +2,9 @@ package cn.simpletool.watermarker.controller;
 
 import cn.simpletool.watermarker.common.LogMessageVo;
 import cn.simpletool.watermarker.common.Response;
+import cn.simpletool.watermarker.service.LogService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
-@RequestMapping("/api/log/")
+@RequestMapping("/api/")
 public class LogController {
 
-    @RequestMapping("/")
+    @Autowired
+    private LogService logService;
+
+    @RequestMapping("/log")
     public Response<Boolean> log(LogMessageVo logMessage) {
         log.info(logMessage.toString());
         return Response.result(Boolean.TRUE);
