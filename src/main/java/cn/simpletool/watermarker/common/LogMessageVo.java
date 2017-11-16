@@ -15,6 +15,16 @@ public class LogMessageVo {
      * 日志的类型 {@link cn.simpletool.watermarker.common.LogMessageType}
      */
     private int logMessageType;
+
+    /**
+     * 客户端ip
+     */
+    private String clientIp;
+
+    /**
+     * 客户端类别 {@link cn.simpletool.watermarker.common}
+     */
+    private Integer clientType;
     /**
      * 日志的内容
      */
