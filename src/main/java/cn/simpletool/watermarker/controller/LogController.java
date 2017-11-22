@@ -1,5 +1,6 @@
 package cn.simpletool.watermarker.controller;
 
+import cn.simpletool.watermarker.common.IpUtils;
 import cn.simpletool.watermarker.common.Response;
 import cn.simpletool.watermarker.model.LogMessage;
 import cn.simpletool.watermarker.service.LogService;
@@ -29,7 +30,7 @@ public class LogController {
 
     @RequestMapping("/log")
     public Response<Boolean> log(@RequestBody LogMessage logMessage, HttpServletRequest request) {
-        logMessage.setClientIp(request.getRemoteAddr());
+        logMessage.setClientIp(IpUtils.getRealIpAddress(request));
         log.info(logMessage.toString());
         logService.addLog(logMessage);
         return Response.result(logMessage);
