@@ -1,16 +1,22 @@
-package cn.simpletool.watermarker.common;
+package cn.simpletool.watermarker.model;
 
 import lombok.Data;
 
 /**
- * 日志Vo
+ * 日志实体
  *
  * @author ZhanJingbo
  * @version 1.0.0
  * Created on 2017/10/31
  */
 @Data
-public class LogMessageVo {
+public class LogMessage {
+
+    /**
+     * 日志id
+     */
+    private int id;
+
     /**
      * 日志的类型 {@link cn.simpletool.watermarker.common.LogMessageType}
      */
@@ -22,7 +28,7 @@ public class LogMessageVo {
     private String clientIp;
 
     /**
-     * 客户端类别 {@link cn.simpletool.watermarker.common}
+     * 客户端类别 {@link cn.simpletool.watermarker.common.LogClientTypeEnum}
      */
     private Integer clientType;
     /**
@@ -30,5 +36,9 @@ public class LogMessageVo {
      */
     private String logMessageContent;
 
+    /**
+     * 创建时间
+     */
+    private long createTime;
 
 }

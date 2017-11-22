@@ -1,5 +1,7 @@
 package cn.simpletool.watermarker.service;
 
+import cn.simpletool.watermarker.model.LogMessage;
+
 /**
  * 日志统计，主要统计使用情况，意见反馈等信息
  * @author ZhanJingbo
@@ -8,5 +10,5 @@ package cn.simpletool.watermarker.service;
  */
 public interface LogService {
 
-    void addLog(int type,String logMessage);
+    void addLog(LogMessage logMessage);
 }
