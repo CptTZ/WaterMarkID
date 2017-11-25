@@ -6,6 +6,20 @@
 
 .p-waterMark{
   height: 100%;
+  .header{
+    background: #fff;
+    .logo{
+      float: left;
+      margin: 15px 40px 0 0;
+      width: 150px;
+      height: 33px;
+      background: url('../../../images/simpletool.png');
+      background-size: 100%;
+    }
+    .ant-menu{
+      font-size: 1.3em;
+    }
+  }
   .container{
     position: relative;
     padding: 20px 0;
@@ -17,22 +31,40 @@
       overflow: auto;
     }
     .title{
-      margin-top: 80px;
+      margin-top: 40px;
       line-height: 2;
+      color:#108ee9;
     }
     .desc{
       line-height: 2;
+      color: #d8d8d8;
+      font-size: 1.5em;
     }
     .formWrap{
       margin-top: 50px;
+      font-size: 1.2em;
+      label{
+        color:#108ee9; 
+      }
       .btn {
         width: 90%;
         min-width: 90px;
+        line-height: 28px;
+      }
+      .input-word{
+        color:#ccc;
+        border-color: #108ee9;
       }
     }
     .img{
       max-width:90%;
       max-height: 350px;
+    }
+    .desc2{
+      color:#999;
+      font-size: 1em;
+      line-height: 2;
+      margin-bottom: 1em;
     }
   }
 
@@ -40,5 +72,6 @@
     background: #fff;
     height: 60px;
     text-align: center;
+    color: #999;
   }
 }
