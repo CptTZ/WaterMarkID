@@ -51,7 +51,10 @@ class Container extends React.Component {
           <Row>
             <Col span={22} offset={1}>
               <div className="content">
-                <h1 className="title">水水的证件</h1>
+                <div className="title">
+                  <div className="logo"></div>
+                  <h1>水水的证件</h1>
+                </div>
                 <p className="desc">加水印操作在本地完成，任何证件信息不会上传到网站，请放心使用</p>
 
                 <Row className="formWrap">
