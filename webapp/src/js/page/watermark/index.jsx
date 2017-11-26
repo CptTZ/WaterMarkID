@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './index.less';
 import DEFAULT_IMG_URL from '../../../images/example.jpg';
-import { Layout, Form, Input, Button, Row, Col, Menu, Upload, message } from 'antd';
+import { Layout, Form, Input, Button, Row, Col, Menu, Upload, message, Icon } from 'antd';
 import WaterMark from './watermark';
+import Jquery from 'jquery'
 const { Header, Content, Footer } = Layout;
 const FormItem = Form.Item;
 
 const waterMark = new WaterMark();
+message.config({
+  top: 230
+})
 
 class Container extends React.Component {
   constructor(props) {
@@ -24,6 +28,7 @@ class Container extends React.Component {
     this.handleTextOnBlur = this.handleTextOnBlur.bind(this);
     this.dataURLtoBlob = this.dataURLtoBlob.bind(this);
     this.validateBeforeDraw = this.validateBeforeDraw.bind(this);
+    this.log = this.log.bind(this);
   }
   render() {
     const formItemLayout = {
@@ -97,7 +102,11 @@ class Container extends React.Component {
           <canvas id="myCanvas" style={{ display: 'none' }}></canvas>
         </Content>
         <Footer className="footer">
-          浙ICP备17043803号 © 2017 Simple Tool.
+          <span>浙ICP备17043803号 © 2017 Simple Tool.</span>
+          <div className="iconWrap">
+            <a href="mailto:simpletool@126.com"><i className="icon email"></i></a>
+            <a href="//shang.qq.com/wpa/qunwpa?idkey=52b2576d199ecc5702dd11ac7c42f1a0ec6356659015175ab635e3b21ae4f03c"><i className="icon qq"></i></a>
+          </div>
         </Footer>
       </Layout>
     );
@@ -166,6 +175,13 @@ class Container extends React.Component {
   }
   handleSaveImg(e) {
     if (!this.validateBeforeDraw()) return;
+    this.log(this.state.text, 3);
+
+    window.isSupportDownload = 'download' in document.createElement('a');
+    if (!window.isSupportDownload){
+      message.error('当前浏览器暂不兼容~请右键点击水印保存哦~');
+      return false;
+    }
 
     var target = e.target;
     var imgData = document.getElementById('myCanvas').toDataURL({
@@ -200,6 +216,7 @@ class Container extends React.Component {
     });
   }
   updateImgurl() {
+    this.log(this.state.text, 1);
     var url = document.getElementById("myCanvas").toDataURL("image/png");
     this.setState({
       imgUrl: url
@@ -225,6 +242,16 @@ class Container extends React.Component {
     }
 
     return true;
+  }
+  log(text, logMessageType){
+    Jquery.ajax({
+      url: "/api/log",
+      data: {
+        clientType: 1,
+        logMessageType: logMessageType,
+        logMessageContent: text
+      }
+    });
   }
 }
 

@@ -6,6 +6,7 @@
 
 .p-waterMark{
   height: 100%;
+  overflow: hidden;  
   .header{
     background: #fff;
     .logo{
@@ -22,16 +23,16 @@
   }
   .container{
     position: relative;
-    padding: 20px 0;
+    margin: 20px 0;
     text-align: center;
     line-height: 1;
-    background: #ececec;
+    background: #fff;
+    overflow: scroll;
     .content{
+      padding-top: 30px;
       background: #fff;
-      overflow: auto;
     }
     .title{
-      margin-top: 30px;
       .logo{
         display: inline-block;
         margin-right: 10px;
@@ -91,5 +92,27 @@
     height: 60px;
     text-align: center;
     color: #999;
+    font-size: 14px;
+    line-height: 60px;
+    padding: 0;
+    overflow: hidden;
+    .iconWrap{
+      display: inline-block;
+      padding: 15px 50px;
+      float: right;
+    }
+    .icon{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-size: 100%;
+      margin-right: 30px;;
+    }
+    .email{
+      background-image: url(../../../images/email.png);
+    }
+    .qq{
+      background-image: url(../../../images/qq.png);
+    }
   }
 }
