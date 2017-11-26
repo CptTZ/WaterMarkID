@@ -252,8 +252,9 @@ class Container extends React.Component {
   }
   log(text, logMessageType) {
     Jquery.ajax({
-      url: "/api/log",
-      dataType: "json",
+      url: '/api/log',
+      type: 'post',
+      contentType: 'application/json',
       data: {
         clientType: 1,
         logMessageType: logMessageType,
