@@ -42,17 +42,21 @@ class Container extends React.Component {
       }
     };
     var state = this.state;
+    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
     return (
       <Layout className="p-waterMark" >
         <Header className="header">
           <div className="logo" />
-          <Menu
-            mode="horizontal"
-            selectedKeys={['1']}
-            style={{ lineHeight: '62px', display: 'inline-block' }}
-          >
-            <Menu.Item key="1">水水的证件</Menu.Item>
-          </Menu>
+          {
+            !isMobile &&
+            <Menu
+              mode="horizontal"
+              selectedKeys={['1']}
+              style={{ lineHeight: '62px', display: 'inline-block' }}
+            >
+              <Menu.Item key="1">水水的证件</Menu.Item>
+            </Menu>
+          }
         </Header>
         <Content className="container">
           <Row>
@@ -103,10 +107,13 @@ class Container extends React.Component {
         </Content>
         <Footer className="footer">
           <span>浙ICP备17043803号 © 2017 Simple Tool.</span>
-          <div className="iconWrap">
-            <a href="mailto:simpletool@126.com"><i className="icon email"></i></a>
-            <a href="//shang.qq.com/wpa/qunwpa?idkey=52b2576d199ecc5702dd11ac7c42f1a0ec6356659015175ab635e3b21ae4f03c"><i className="icon qq"></i></a>
-          </div>
+          {
+            !isMobile &&
+            <div className="iconWrap">
+              <a href="//shang.qq.com/wpa/qunwpa?idkey=52b2576d199ecc5702dd11ac7c42f1a0ec6356659015175ab635e3b21ae4f03c" target="_blank"><i className="icon qq"></i></a>
+              <a href="mailto:simpletool@126.com"><i className="icon email"></i></a>
+            </div>
+          }
         </Footer>
       </Layout>
     );
@@ -178,7 +185,7 @@ class Container extends React.Component {
     this.log(this.state.text, 3);
 
     window.isSupportDownload = 'download' in document.createElement('a');
-    if (!window.isSupportDownload){
+    if (!window.isSupportDownload) {
       message.error('当前浏览器暂不兼容~请右键点击水印保存哦~');
       return false;
     }
@@ -237,15 +244,16 @@ class Container extends React.Component {
     }
 
     //判断文字是否改变
-    if(fromText && this.state.text === this.state.lastText){
+    if (fromText && this.state.text === this.state.lastText) {
       return false;
     }
 
     return true;
   }
-  log(text, logMessageType){
+  log(text, logMessageType) {
     Jquery.ajax({
       url: "/api/log",
+      dataType: "json",
       data: {
         clientType: 1,
         logMessageType: logMessageType,

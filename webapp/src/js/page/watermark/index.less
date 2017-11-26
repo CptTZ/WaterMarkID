@@ -6,9 +6,9 @@
 
 .p-waterMark{
   height: 100%;
-  overflow: hidden;  
   .header{
     background: #fff;
+    overflow: hidden;  
     .logo{
       float: left;
       margin: 15px 40px 0 0;
@@ -27,7 +27,7 @@
     text-align: center;
     line-height: 1;
     background: #fff;
-    overflow: scroll;
+    overflow-y: scroll;
     .content{
       padding-top: 30px;
       background: #fff;
@@ -88,6 +88,7 @@
   }
 
   .footer{
+    position: relative;
     background: #fff;
     height: 60px;
     text-align: center;
@@ -97,9 +98,9 @@
     padding: 0;
     overflow: hidden;
     .iconWrap{
-      display: inline-block;
-      padding: 15px 50px;
-      float: right;
+      position: absolute;
+      right: 50px;
+      top: 15px;
     }
     .icon{
       display: inline-block;
