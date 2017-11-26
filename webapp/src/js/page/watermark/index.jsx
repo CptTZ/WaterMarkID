@@ -12,14 +12,16 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '此证件进攻办理XX业务使用，他用无效',
+      text: '此证件仅供办理XX业务使用，他用无效',
+      lastText: '此证件仅供办理XX业务使用，他用无效', //作对比，以免反复画图
       imgUrl: DEFAULT_IMG_URL
     };
     this.beforeUpload = this.beforeUpload.bind(this);
     this.getSomeConfig = this.getSomeConfig.bind(this);
     this.handleSaveImg = this.handleSaveImg.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleTextBlur = this.handleTextBlur.bind(this);
+    this.handleTextPressEnter = this.handleTextPressEnter.bind(this);
+    this.handleTextOnBlur = this.handleTextOnBlur.bind(this);
     this.dataURLtoBlob = this.dataURLtoBlob.bind(this);
     this.validateBeforeDraw = this.validateBeforeDraw.bind(this);
   }
@@ -53,7 +55,6 @@ class Container extends React.Component {
               <div className="content">
                 <div className="title">
                   <div className="logo"></div>
-                  <h1>水水的证件</h1>
                 </div>
                 <p className="desc">加水印操作在本地完成，任何证件信息不会上传到网站，请放心使用</p>
 
@@ -67,7 +68,8 @@ class Container extends React.Component {
                         value={state.text}
                         className="input-word"
                         onChange={this.handleTextChange}
-                        onBlur={this.handleTextBlur}
+                        onBlur={this.handleTextOnBlur}
+                        onPressEnter={this.handleTextPressEnter}
                         ref="text" />
                     </FormItem>
                   </Col>
@@ -130,6 +132,9 @@ class Container extends React.Component {
         Object.assign(config, that.getSomeConfig(height));
         waterMark.mark(config).then(function () {
           that.updateImgurl();
+          that.setState({
+            lastText: that.state.text
+          });
         });
       }
     }
@@ -142,14 +147,20 @@ class Container extends React.Component {
       text: value
     });
   }
-  handleTextBlur(e) {
-    if (!this.validateBeforeDraw()) return;
+  handleTextPressEnter(e) {
+    e.target.blur();
+  }
+  handleTextOnBlur(e) {
+    if (!this.validateBeforeDraw(true)) return;
 
     var that = this;
     waterMark.reRendering({
       text: this.state.text
     }).then(function () {
       that.updateImgurl();
+      that.setState({
+        lastText: that.state.text
+      });
       message.success('水印文字已更新~');
     });
   }
@@ -194,17 +205,22 @@ class Container extends React.Component {
       imgUrl: url
     })
   }
-  validateBeforeDraw() {
+  validateBeforeDraw(fromText) {
 
     //判断水印文字是否为空
     if (!this.state.text) {
-      message.error('水印文字不可为空哦~');
+      message.error('还是写点什么吧~');
       return false;
     }
 
     //判断是否传图
     if (this.state.imgUrl === DEFAULT_IMG_URL) {
-      message.error('请先选择证件图片哦~');
+      !fromText && message.error('请先选择证件图片哦~');
+      return false;
+    }
+
+    //判断文字是否改变
+    if(fromText && this.state.text === this.state.lastText){
       return false;
     }
 

@@ -9769,16 +9769,7 @@ form .ant-input-group-addon .ant-cascader-picker:only-child {
   overflow: auto;
 }
 .p-waterMark .container .title {
-  margin-top: 40px;
-}
-.p-waterMark .container .title h1 {
-  display: inline-block;
-  line-height: 2;
-  color: #108ee9;
-  font-size: 56px;
-  line-height: 100px;
-  font-weight: normal;
-  vertical-align: middle;
+  margin-top: 30px;
 }
 .p-waterMark .container .title .logo {
   display: inline-block;
@@ -9790,25 +9781,36 @@ form .ant-input-group-addon .ant-cascader-picker:only-child {
   vertical-align: middle;
 }
 .p-waterMark .container .desc {
-  line-height: 2;
+  line-height: 1.5;
   color: #d8d8d8;
-  font-size: 1.5em;
+  font-size: 18px;
 }
 .p-waterMark .container .formWrap {
-  margin-top: 50px;
-  font-size: 1.2em;
+  margin-top: 30px;
 }
 .p-waterMark .container .formWrap label {
   color: #108ee9;
+  font-size: 16px;
+  line-height: 40px;
 }
 .p-waterMark .container .formWrap .btn {
-  width: 90%;
+  width: 100%;
+  height: 40px;
   min-width: 90px;
-  line-height: 28px;
+  line-height: 40px;
+  font-size: 14px;
 }
 .p-waterMark .container .formWrap .input-word {
   color: #ccc;
   border-color: #108ee9;
+  font-size: 14px;
+  height: 40px;
+}
+.p-waterMark .container .formWrap .input-word:focus {
+  color: #000;
+}
+.p-waterMark .container .formWrap .ant-upload {
+  width: 100%;
 }
 .p-waterMark .container .img {
   max-width: 90%;
