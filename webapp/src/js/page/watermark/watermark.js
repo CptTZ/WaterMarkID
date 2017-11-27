@@ -1,6 +1,4 @@
-! function (win, callback) {
-  win.WaterMark = callback;
-}(window, function () {
+function Watermark() {
   var Config = {
       text: "watermark",
       rotate: 15,
@@ -17,16 +15,17 @@
       id: "",
       parent: null
     },
-    Parent = null;
+    Parent = null,
     Context = null,
     textWidth = -1,
     textHeight = -1;
+
 
   function mark(userConfig) {
     userConfig = userConfig || {};
     Config = extend(Config, userConfig);
 
-    return (getCanvas(),drawImg());
+    return (getCanvas(), drawImg());
   }
 
   function extend(origin, target) {
@@ -50,15 +49,15 @@
 
   function drawImg() {
     //保证canvas加载完成
-    var defer = $.Deferred();
-    var Img = new Image();
-    Img.onload = function () {
-      Context.drawImage(this, 0, 0, Config.width, Config.height);
-      insertMarks();
-      defer.resolve();
-    };
-    Img.src = Config.imgUrl;
-    return defer.promise();
+    return new Promise(function (resolve, reject) {
+      var Img = new Image();
+      Img.onload = function () {
+        Context.drawImage(this, 0, 0, Config.width, Config.height);
+        insertMarks();
+        resolve();
+      };
+      Img.src = Config.imgUrl;
+    });
   }
 
   function insertMarks() {
@@ -113,17 +112,17 @@
 
   function createMark(x, y) {
     Context.save();
-    Context.font = "normal normal normal "+ Config.size + "px Arial";
+    Context.font = "normal normal normal " + Config.size + "px Arial";
     Context.fillStyle = Config.color;
     Context.zIndex = 1;
-    Context.rotate(Math.PI/180 * Config.rotate);
+    Context.rotate(Math.PI / 180 * Config.rotate);
     Context.globalAlpha = Config.opacity;
     Context.fillText(Config.text, x, y);
     Context.restore();
   }
 
   function removeMarks() {
-    Context.clearRect(0, 0 ,Config.width, Config.height); 
+    Context.clearRect(0, 0, Config.width, Config.height);
   }
 
   function reRendering(userConfig) {
@@ -132,10 +131,10 @@
     Config = extend(Config, userConfig);
     return drawImg();
   }
-
-
   return {
     mark: mark,
     reRendering: reRendering
   };
-});
+}
+
+module.exports = Watermark;
