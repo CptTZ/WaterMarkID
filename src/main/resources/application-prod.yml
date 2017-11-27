@@ -1,5 +1,10 @@
 server:
-  port: 80
+  port: 8080
 logging:
-  path: ~/log/
-  file: watermark
+  path: ./log/
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.17.0.13:3306/simpletool
+    username: root
+    password: SimpletoolDB428

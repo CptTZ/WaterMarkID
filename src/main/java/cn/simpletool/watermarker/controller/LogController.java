@@ -1,7 +1,14 @@
 package cn.simpletool.watermarker.controller;
 
+import cn.simpletool.watermarker.common.IpUtils;
+import cn.simpletool.watermarker.common.Response;
+import cn.simpletool.watermarker.model.LogMessage;
+import cn.simpletool.watermarker.service.LogService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +22,17 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("/api/")
 public class LogController {
 
+    @Autowired
+    private LogService logService;
+
     @RequestMapping("/log")
-    public Boolean log(String logMessage, HttpServletRequest request) {
-        log.info(request.getRemoteAddr() + ":" + logMessage);
-        return true;
+    public Response<Boolean> log(@RequestBody LogMessage logMessage, HttpServletRequest request) {
+        logMessage.setClientIp(IpUtils.getRealIpAddress(request));
+        log.info(logMessage.toString());
+        logService.addLog(logMessage);
+        return Response.result(logMessage);
     }
 }
