@@ -1,6 +1,6 @@
 package cn.simpletool.watermarker.service.impl;
 
-import cn.simpletool.watermarker.dao.WaterConfigServiceDao;
+import cn.simpletool.watermarker.dao.WaterConfigDao;
 import cn.simpletool.watermarker.model.WaterConfig;
 import cn.simpletool.watermarker.service.WaterConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class WaterConfigServiceImpl implements WaterConfigService {
 
     @Autowired
-    private WaterConfigServiceDao waterConfigServiceDao;
+    private WaterConfigDao waterConfigDao;
 
     /**
      * 根据平台类型 获取默认配置信息
@@ -25,6 +25,6 @@ public class WaterConfigServiceImpl implements WaterConfigService {
      */
     @Override
     public WaterConfig getWaterConfig(int platformType) {
-        return waterConfigServiceDao.getWaterConfig(platformType);
+        return waterConfigDao.getWaterConfig(platformType);
     }
 }
