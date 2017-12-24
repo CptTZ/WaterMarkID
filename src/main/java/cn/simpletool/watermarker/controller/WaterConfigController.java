@@ -21,8 +21,9 @@ public class WaterConfigController {
     @Autowired
     private WaterConfigService waterConfigService;
 
-    @RequestMapping("/waterConfig/{platformType}")
-    public WaterConfig getWaterConfigByPlatformType(@PathVariable("platformType") int platformType) {
-        return waterConfigService.getWaterConfig(platformType);
+    @RequestMapping(value = "/waterConfig/{platformType}", produces = "application/json;charset=UTF-8")
+    public String getWaterConfigByPlatformType(@PathVariable("platformType") int platformType) {
+        String jsonConfigString = waterConfigService.getWaterConfig(platformType).getConfigJsonString();
+        return jsonConfigString;
     }
 }
