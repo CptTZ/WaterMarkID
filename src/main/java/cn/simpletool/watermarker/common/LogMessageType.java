@@ -9,7 +9,8 @@ package cn.simpletool.watermarker.common;
  */
 public enum LogMessageType {
     WATER_MARKER_TEXT(1, "水印文字"),
-    FEED_BACK(2, "意见反馈");
+    FEED_BACK(2, "意见反馈"),
+    SAVE_PHOTO(3, "保存图片");
 
     int value;
     String typeDesc;

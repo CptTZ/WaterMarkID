@@ -37,6 +37,11 @@ public class LogMessage {
     private String logMessageContent;
 
     /**
+     * 水印颜色
+     */
+    private String waterColor;
+
+    /**
      * 创建时间
      */
     private long createTime;

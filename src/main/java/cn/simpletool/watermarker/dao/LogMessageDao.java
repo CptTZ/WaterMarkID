@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 public interface LogMessageDao {
 
-    @Insert("INSERT INTO log_message(log_message_type,client_ip,client_type,log_message_content,create_time) VALUES(#{logMessageType},#{clientIp},#{clientType},#{logMessageContent},now())")
+    @Insert("INSERT INTO log_message(log_message_type,client_ip,client_type,log_message_content,water_color,create_time) VALUES(#{logMessageType},#{clientIp},#{clientType},#{logMessageContent},#{waterColor},now())")
     int addLog(LogMessage logMessage);
 }
