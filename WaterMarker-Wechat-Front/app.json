@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/waterMarker/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "水印小助手",
+    "navigationBarTextStyle":"black"
+  }
+}
