@@ -200,6 +200,22 @@ Page({
     wx.previewImage({
       urls: ['https://www.simpletool.cn/static/money.jpg']
     })
+  },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '水印小助手',
+      path: 'pages/waterMarker/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
 

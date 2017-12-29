@@ -1,8 +1,9 @@
 /**index.wxss**/
-.bgWord{
+
+.bgWord {
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
   padding: 180rpx 0 0;
   width: 100%;
   height: 300rpx;
@@ -11,27 +12,33 @@
   z-index: 1;
   cursor: pointer;
 }
-.bgWord .line1{
+
+.bgWord .line1 {
   font-size: 56rpx;
   line-height: 78rpx;
 }
-.bgWord .line2{
+
+.bgWord .line2 {
   margin-top: 62rpx;
   font-size: 28rpx;
   height: 40rpx;
 }
-.page__bd{
+
+.page__bd {
   text-align: center;
 }
-.page__bd .section{
+
+.page__bd .section {
   height: 100rpx;
   line-height: 100rpx;
 }
-.page__bd .section1{
+
+.page__bd .section1 {
   border-top: 1px solid #f7f7f7;
   border-bottom: 1px solid #f7f7f7;
 }
-.page__bd .section .left{
+
+.page__bd .section .left {
   padding-left: 10rpx;
   float: left;
   width: 105rpx;
@@ -40,23 +47,27 @@
   text-align: left;
   font-size: 28rpx;
 }
-.page__bd .section .right{
+
+.page__bd .section .right {
   float: right;
   width: 630rpx;
   height: 100%;
   color: #b2b2b2;
   font-size: 30rpx;
-  text-align: left;  
+  text-align: left;
   overflow: hidden;
 }
-.page__bd .section .right input{
+
+.page__bd .section .right input {
   height: 100rpx;
   line-height: 100rpx;
 }
-.page__bd .section .right input.active{
+
+.page__bd .section .right input.active {
   color: #000;
 }
-.page__bd  .btn{
+
+.page__bd  .btn {
   margin: 30rpx 30rpx;
   width: 670rpx;
   height: 100rpx;
@@ -64,26 +75,40 @@
   font-size: 36rpx;
   border-radius: 4px;
 }
-.page__bd .normal{
-  margin-top: 50rpx;
-}
-.page__bd .primary{
-  color: #fff;
-  background: #108EE9;
+
+.page__bd .normal {
   margin-top: 50rpx;
 }
 
-.circle{
-display: inline-block;
-margin: 20rpx 20rpx 0 0;
-width: 58rpx;
-height: 58rpx;
-border-radius: 50%;
-border: 1rpx solid #979797;
-background: #000;
+.page__bd .primary {
+  color: #fff;
+  background: #108ee9;
+  margin-top: 50rpx;
 }
-.circle.active{
+
+.circle {
+  display: inline-block;
+  margin: 20rpx 20rpx 0 0;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 50%;
+  border: 1rpx solid #979797;
+  background: #000;
+}
+
+.circle.active {
   margin-top: 15rpx;
   width: 68rpx;
   height: 68rpx;
+}
+
+.contact,.contact::after,.contact::before {
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: top;
+  font-size: inherit;
+  color: inherit;
+  line-height:inherit;
 }

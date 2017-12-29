@@ -5,28 +5,29 @@
     <view wx:if="{{!draw}}" class="bgWord">
       <view class="line1">点击选择证件图片</view>
       <view class="line2">加水印操作在本地完成，请放心使用</view>
-    </view> 
+    </view>
   </view>
-  <view class="page__bd  page__bd_spacing">      
+  <view class="page__bd  page__bd_spacing">
     <view class="section section1">
       <view class="left">文字</view>
       <view class="right">
-        <input class="{{inputFocus ? 'active': ''}}" value="{{defaultText}}" bindinput="handleTextChange" bindblur="handleTextBlur" bindfocus="handleTextFocus"/> 
+        <input class="{{inputFocus ? 'active': ''}}" value="{{defaultText}}" bindinput="handleTextChange" bindblur="handleTextBlur" bindfocus="handleTextFocus" />
       </view>
     </view>
-     <view class="section">
+    <view class="section">
       <view class="left">颜色</view>
       <view class="right" bindtap="handleCircleClick">
         <view wx:for="{{ColorMap}}" wx:key="*this" class="{{currentColorIndex == item[0] ? 'circle active': 'circle'}}" style="{{'background:' +  item[1]}}" id="{{item[0]}}"></view>
       </view>
-    </view> 
+    </view>
     <button class="btn big secondary normal" bindtap="previewImg">预览</button>
-    <button class="btn big secondary primary" bindtap="sameImg">保存</button> 
+    <button class="btn big secondary primary" bindtap="sameImg">保存</button>
   </view>
   <view class="page__ft">
-     <view class="weui-footer">
+    <view class="weui-footer">
       <p class="weui-footer__links">
-          <a bindtap="reward" class="weui-footer__link">打赏我们</a>
+        <a bindtap="reward" class="weui-footer__link">打赏我们 </a>
+        <a class="weui-footer__link"> <button class="contact" open-type='contact'>联系我们</button></a>
       </p>
       <view class="weui-footer__text">Copyright © 2017 simpletool.cn</view>
     </view>
