@@ -22,7 +22,8 @@ Page({
   data: {
     canvasW: 100,
     canvasH: 240,
-    inputFocus: false
+    inputFocus: false,
+    currentColorIndex: -1
   },
   onReady: function (event) {
     this.getDefaultConfig();
@@ -83,6 +84,11 @@ Page({
               that.setData({
                 draw: true
               });
+              if (that.data.currentColorIndex === -1 && that.data.defaultColorIndex !== -1){
+                that.setData({
+                  currentColorIndex: that.data.defaultColorIndex
+                })
+              }
             });
           }
         })
@@ -189,7 +195,7 @@ Page({
           });
         that.setData({
           ColorMap: colorMap,
-          currentColorIndex: defaultColor.length ? defaultColor[0][0] : -1,
+          defaultColorIndex: defaultColor.length ? defaultColor[0][0] : -1,
           defaultText: Config.text,
           text: Config.text
         });
