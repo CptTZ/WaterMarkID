@@ -20,7 +20,7 @@ var Config = {
 
 Page({
   data: {
-    canvasW: 750,
+    canvasW: 100,
     canvasH: 240,
     inputFocus: false
   },
