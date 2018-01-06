@@ -97,6 +97,9 @@ Page({
   },
   sameImg: function (event) {
     if (!this.data.draw) return false;
+    wx.showLoading({
+      title: '保存中',
+    });
     wx.canvasToTempFilePath({
       canvasId: 'myCanvas',
       destWidth: this.data.imgW,
@@ -105,11 +108,12 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: function () {
+            wx.hideLoading();
             wx.showToast({
               title: '已保存到相册',
               icon: 'success',
               duration: 2000
-            })
+            });
           }
         });
       }
@@ -118,11 +122,15 @@ Page({
   },
   previewImg: function () {
     if (!this.data.draw) return false;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.canvasToTempFilePath({
       canvasId: 'myCanvas',
       destWidth: this.data.imgW,
       destHeight: this.data.imgH,
       success: function (res) {
+        wx.hideLoading();
         wx.previewImage({
           urls: [res.tempFilePath]
         })
