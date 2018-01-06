@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './index.less';
 
 class Container extends React.Component{
@@ -15,4 +16,4 @@ class Container extends React.Component{
   };
 }
 
-module.exports = Container;
+ReactDOM.render(<Container />, document.getElementById('app'));

@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './index.less';
-import DEFAULT_IMG_URL from '../../../images/example.jpg';
+// import DEFAULT_IMG_URL from '../../../images/example.jpg';
 import { Layout, Form, Input, Button, Row, Col, Menu, Upload, message, Icon } from 'antd';
 import WaterMark from './watermark';
 import Jquery from 'jquery'
@@ -11,6 +12,8 @@ const waterMark = new WaterMark();
 message.config({
   top: 230
 })
+
+const DEFAULT_IMG_URL = "http://7xrsyo.com1.z0.glb.clouddn.com/2018-01-06-15152313137747.jpg";
 
 class Container extends React.Component {
   constructor(props) {
@@ -265,4 +268,4 @@ class Container extends React.Component {
   }
 }
 
-module.exports = Container;
+ReactDOM.render(<Container />, document.getElementById('app'));

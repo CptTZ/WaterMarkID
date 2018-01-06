@@ -468,6 +468,9 @@ textarea {
   font-size: inherit;
   line-height: inherit;
   color: inherit;
+}
+input[type="text"],
+textarea {
   -webkit-appearance: none;
 }
 ul,
@@ -3037,6 +3040,185 @@ samp {
 }
 .ant-motion-collapse-active {
   transition: height 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable declaration-bang-space-before */
+/* stylelint-disable declaration-bang-space-before */
+.ant-message {
+  font-size: 12px;
+  position: fixed;
+  z-index: 1010;
+  width: 100%;
+  top: 16px;
+  left: 0;
+  pointer-events: none;
+}
+.ant-message-notice {
+  padding: 8px;
+  text-align: center;
+}
+.ant-message-notice:first-child {
+  margin-top: -8px;
+}
+.ant-message-notice-content {
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  display: inline-block;
+  pointer-events: all;
+}
+.ant-message-success .anticon {
+  color: #00a854;
+}
+.ant-message-error .anticon {
+  color: #f04134;
+}
+.ant-message-warning .anticon {
+  color: #ffbf00;
+}
+.ant-message-info .anticon,
+.ant-message-loading .anticon {
+  color: #108ee9;
+}
+.ant-message .anticon {
+  margin-right: 8px;
+  font-size: 14px;
+  top: 1px;
+  position: relative;
+}
+.ant-message-notice.move-up-leave.move-up-leave-active {
+  -webkit-animation-name: MessageMoveOut;
+  animation-name: MessageMoveOut;
+  overflow: hidden;
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+}
+@-webkit-keyframes MessageMoveOut {
+  0% {
+    opacity: 1;
+    max-height: 150px;
+    padding: 8px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+  }
+}
+@keyframes MessageMoveOut {
+  0% {
+    opacity: 1;
+    max-height: 150px;
+    padding: 8px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+  }
+}
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable declaration-bang-space-before */
+/* stylelint-disable declaration-bang-space-before */
+.ant-layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex: auto;
+  flex: auto;
+  background: #ececec;
+}
+.ant-layout.ant-layout-has-sider {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.ant-layout.ant-layout-has-sider > .ant-layout,
+.ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow-x: hidden;
+}
+.ant-layout-header,
+.ant-layout-footer {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+.ant-layout-header {
+  background: #404040;
+  padding: 0 50px;
+  height: 64px;
+  line-height: 64px;
+}
+.ant-layout-footer {
+  background: #ececec;
+  padding: 24px 50px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+}
+.ant-layout-content {
+  -webkit-box-flex: 1;
+  -ms-flex: auto;
+  flex: auto;
+}
+.ant-layout-sider {
+  transition: all .2s;
+  position: relative;
+  background: #404040;
+  /* fix firefox can't set width smaller than content on flex item */
+  min-width: 0;
+}
+.ant-layout-sider-children {
+  height: 100%;
+  padding-top: 0.1px;
+  margin-top: -0.1px;
+}
+.ant-layout-sider-has-trigger {
+  padding-bottom: 48px;
+}
+.ant-layout-sider-right {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+.ant-layout-sider-trigger {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  cursor: pointer;
+  height: 48px;
+  line-height: 48px;
+  color: #fff;
+  background: #404040;
+  z-index: 1;
+  transition: all 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ant-layout-sider-zero-width > * {
+  overflow: hidden;
+}
+.ant-layout-sider-zero-width-trigger {
+  position: absolute;
+  top: 64px;
+  right: -36px;
+  text-align: center;
+  width: 36px;
+  height: 42px;
+  line-height: 42px;
+  background: #404040;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background .3s ease;
+}
+.ant-layout-sider-zero-width-trigger:hover {
+  background: #535353;
 }
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */
@@ -6640,6 +6822,7 @@ samp {
   position: relative;
 }
 .ant-progress-text {
+  word-break: normal;
   width: 2em;
   text-align: left;
   font-size: 1em;
@@ -8355,7 +8538,7 @@ textarea.ant-input {
 .ant-input-group.ant-input-group-compact > * {
   border-radius: 0;
   border-right-width: 0;
-  vertical-align: middle;
+  vertical-align: top;
   float: none;
   display: inline-block;
 }
@@ -8948,83 +9131,6 @@ textarea.ant-input {
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */
 /* stylelint-disable declaration-bang-space-before */
-.ant-message {
-  font-size: 12px;
-  position: fixed;
-  z-index: 1010;
-  width: 100%;
-  top: 16px;
-  left: 0;
-  pointer-events: none;
-}
-.ant-message-notice {
-  padding: 8px;
-  text-align: center;
-}
-.ant-message-notice:first-child {
-  margin-top: -8px;
-}
-.ant-message-notice-content {
-  padding: 8px 16px;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  background: #fff;
-  display: inline-block;
-  pointer-events: all;
-}
-.ant-message-success .anticon {
-  color: #00a854;
-}
-.ant-message-error .anticon {
-  color: #f04134;
-}
-.ant-message-warning .anticon {
-  color: #ffbf00;
-}
-.ant-message-info .anticon,
-.ant-message-loading .anticon {
-  color: #108ee9;
-}
-.ant-message .anticon {
-  margin-right: 8px;
-  font-size: 14px;
-  top: 1px;
-  position: relative;
-}
-.ant-message-notice.move-up-leave.move-up-leave-active {
-  -webkit-animation-name: MessageMoveOut;
-  animation-name: MessageMoveOut;
-  overflow: hidden;
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s;
-}
-@-webkit-keyframes MessageMoveOut {
-  0% {
-    opacity: 1;
-    max-height: 150px;
-    padding: 8px;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0;
-    padding: 0;
-  }
-}
-@keyframes MessageMoveOut {
-  0% {
-    opacity: 1;
-    max-height: 150px;
-    padding: 8px;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0;
-    padding: 0;
-  }
-}
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable declaration-bang-space-before */
-/* stylelint-disable declaration-bang-space-before */
 legend {
   display: block;
   width: 100%;
@@ -9112,12 +9218,12 @@ input[type="checkbox"].disabled {
   color: rgba(0, 0, 0, 0.65);
   vertical-align: top;
 }
-.ant-form-item > .ant-form-item:last-child,
-.ant-form-item :not(.ant-form) > .ant-form-item {
+.ant-form-item-control > .ant-form-item:last-child,
+.ant-form-item [class^="ant-col-"] > .ant-form-item:only-child {
   margin-bottom: -24px;
 }
 .ant-form-item-control {
-  line-height: 32px;
+  line-height: 31.9999px;
   position: relative;
   zoom: 1;
 }
@@ -9235,7 +9341,6 @@ form .ant-radio-vertical + .ant-radio-vertical {
   margin-left: 0;
 }
 form .ant-input-number {
-  margin-top: -1px;
   margin-right: 8px;
 }
 form .ant-select,
@@ -9253,6 +9358,16 @@ form .ant-input-group .ant-cascader-picker {
 form .ant-input-group-addon .ant-select:only-child,
 form .ant-input-group-addon .ant-cascader-picker:only-child {
   display: inline-block;
+}
+form .ant-input-group-wrapper {
+  position: relative;
+  top: 2px;
+}
+form .ant-input-group-wrapper.ant-input-group-wrapper-lg {
+  top: 0;
+}
+form .ant-input-group-wrapper.ant-input-group-wrapper-sm {
+  top: 5px;
 }
 .ant-input-group-wrap .ant-select-selection {
   border-bottom-left-radius: 0;
@@ -9631,108 +9746,6 @@ form .ant-input-group-addon .ant-cascader-picker:only-child {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
-}
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable declaration-bang-space-before */
-/* stylelint-disable declaration-bang-space-before */
-.ant-layout {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-flex: 1;
-  -ms-flex: auto;
-  flex: auto;
-  background: #ececec;
-}
-.ant-layout.ant-layout-has-sider {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-.ant-layout.ant-layout-has-sider > .ant-layout,
-.ant-layout.ant-layout-has-sider > .ant-layout-content {
-  overflow-x: hidden;
-}
-.ant-layout-header,
-.ant-layout-footer {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-}
-.ant-layout-header {
-  background: #404040;
-  padding: 0 50px;
-  height: 64px;
-  line-height: 64px;
-}
-.ant-layout-footer {
-  background: #ececec;
-  padding: 24px 50px;
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 12px;
-}
-.ant-layout-content {
-  -webkit-box-flex: 1;
-  -ms-flex: auto;
-  flex: auto;
-}
-.ant-layout-sider {
-  transition: all .2s;
-  position: relative;
-  background: #404040;
-  /* fix firefox can't set width smaller than content on flex item */
-  min-width: 0;
-}
-.ant-layout-sider-children {
-  height: 100%;
-  padding-top: 0.1px;
-  margin-top: -0.1px;
-}
-.ant-layout-sider-has-trigger {
-  padding-bottom: 48px;
-}
-.ant-layout-sider-right {
-  -webkit-box-ordinal-group: 2;
-  -ms-flex-order: 1;
-  order: 1;
-}
-.ant-layout-sider-trigger {
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  cursor: pointer;
-  height: 48px;
-  line-height: 48px;
-  color: #fff;
-  background: #404040;
-  z-index: 1;
-  transition: all 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-.ant-layout-sider-zero-width > * {
-  overflow: hidden;
-}
-.ant-layout-sider-zero-width-trigger {
-  position: absolute;
-  top: 64px;
-  right: -36px;
-  text-align: center;
-  width: 36px;
-  height: 42px;
-  line-height: 42px;
-  background: #404040;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background .3s ease;
-}
-.ant-layout-sider-zero-width-trigger:hover {
-  background: #535353;
 }
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */

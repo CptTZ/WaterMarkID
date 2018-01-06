@@ -1,15 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(config.jsDir, 'app.js'),
+  entry:{
+    'watermark':path.resolve(config.pageDir, 'watermark/index.jsx'),
+    'mobile':path.resolve(config.pageDir, 'mobile/index.jsx'),
+  },
   output: {
     path: config.distDir,
-    filename: 'js/[name]-[hash].js'
+    filename: 'js/[name].bundle.js'
   },
   module: {
     loaders: [{
@@ -43,18 +44,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new htmlWebpackPlugin({
-      template: path.resolve(config.srcDir, 'index.html'),
-      filename: 'index.html',
-      inject: true
-    }),
     new ExtractTextPlugin("css/[name].css", {
       allChunks: true
-    }),
-    new CleanWebpackPlugin(['dist'], {
-      root: '', // An absolute path for the root  of webpack.config.js
-      verbose: true, // Write logs to console.
-      dry: false // Do not delete anything, good for testing.
     })
   ]
 }
