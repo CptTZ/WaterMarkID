@@ -4,7 +4,7 @@
     <canvas class="canvas" style="width:100%;height:{{canvasH}}px;" canvas-id="myCanvas"></canvas>
     <view wx:if="{{!draw}}" class="bgWord">
       <view class="line1">点击选择证件图片</view>
-      <view class="line2">加水印操作在本地完成，请放心使用</view>
+      <view class="line2">加水印手机端完成，不存储任何证件信息</view>
     </view>
   </view>
   <view class="page__bd  page__bd_spacing">
