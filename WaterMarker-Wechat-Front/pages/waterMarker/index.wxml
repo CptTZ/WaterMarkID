@@ -3,8 +3,10 @@
   <view class="page__hd" bindtouchstart="touchImgstart" bindtouchend="touchImgend">
     <canvas class="canvas" style="width:100%;height:{{canvasH}}px;" canvas-id="myCanvas"></canvas>
     <view wx:if="{{!draw}}" class="bgWord">
-      <view class="line1">点击选择证件图片</view>
-      <view class="line2">加水印操作在本地完成，请放心使用</view>
+      <view class="icon_line">
+        <image src='../../images/camera.png'></image>
+      </view>
+      <view class="text_line">加水印操作在本地完成，请放心使用</view>
     </view>
   </view>
   <view class="page__bd  page__bd_spacing">
@@ -29,7 +31,7 @@
         <a bindtap="reward" class="weui-footer__link">打赏我们 </a>
         <a class="weui-footer__link"> <button class="contact" open-type='contact'>意见反馈</button></a>
       </p>
-      <view class="weui-footer__text">Copyright © 2017 simpletool.cn</view>
+      <view class="weui-footer__text">Copyright © 2018 www.simpletool.cn</view>
     </view>
   </view>
 </view>

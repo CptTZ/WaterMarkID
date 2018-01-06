@@ -21,7 +21,7 @@ var Config = {
 Page({
   data: {
     canvasW: 100,
-    canvasH: 240,
+    canvasH: 200,
     inputFocus: false,
     currentColorIndex: -1
   },
