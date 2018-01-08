@@ -6,7 +6,7 @@
       <view class="icon_line">
         <image src='../../images/camera.png'></image>
       </view>
-      <view class="text_line">加水印操作在本地完成，请放心使用</view>
+      <view class="text_line">加水印手机端完成，不存储任何证件信息</view>
     </view>
   </view>
   <view class="page__bd  page__bd_spacing">

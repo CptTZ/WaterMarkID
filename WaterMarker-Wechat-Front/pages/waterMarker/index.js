@@ -221,7 +221,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '水印小助手',
+      title: '',
       path: 'pages/waterMarker/index',
       success: function (res) {
         // 转发成功
