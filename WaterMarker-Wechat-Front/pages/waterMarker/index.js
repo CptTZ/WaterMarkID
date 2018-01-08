@@ -221,7 +221,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '',
+      title: " ",
       path: 'pages/waterMarker/index',
       success: function (res) {
         // 转发成功
