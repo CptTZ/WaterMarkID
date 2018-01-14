@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="page">
-  <view class="page__hd" bindtouchstart="touchImgstart" bindtouchend="touchImgend">
+  <view class="page__hd" bindtouchstart="touchImgstart" bindtouchend="touchImgend" bindlongtap="onLongTrap">
     <canvas class="canvas" style="width:100%;height:{{canvasH}}px;" canvas-id="myCanvas"></canvas>
     <view wx:if="{{!draw}}" class="bgWord">
       <view class="icon_line">
@@ -23,7 +23,11 @@
       </view>
     </view>
     <button class="btn big secondary normal" bindtap="previewImg">预览</button>
-    <button class="btn big secondary primary" bindtap="sameImg">保存</button>
+    <button class="btn big secondary primary" bindtap="saveImg">保存</button>
+    <button class="weui-btn mini-btn btn-share" type="default" size="mini" open-type='share'>
+        <span>推荐给朋友</span> 
+        <!-- <image src="../../images/share.png" class="share-icon"></image> -->
+    </button>
   </view>
   <view class="page__ft">
     <view class="weui-footer">

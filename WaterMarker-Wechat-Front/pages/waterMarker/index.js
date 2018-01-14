@@ -30,12 +30,17 @@ Page({
   },
   touchImgstart: function (event) {
     this.setData({
-      touch: event.changedTouches[0]
+      touch: event.changedTouches[0],
+      touchStartTime: new Date()
     });
   },
   touchImgend: function (event) {
     var start = this.data.touch,
       end = event.changedTouches[0];
+    var startTime = this.data.touchStartTime, endTime = new Date();
+    if (endTime - startTime >= 350) {
+      return;
+    }
     if (Math.abs(start.clientX - end.clientX) < 10 && Math.abs(start.clientY - end.clientY) < 10) {
       this.chooseImg();
     }
@@ -84,7 +89,7 @@ Page({
               that.setData({
                 draw: true
               });
-              if (that.data.currentColorIndex === -1 && that.data.defaultColorIndex !== -1){
+              if (that.data.currentColorIndex === -1 && that.data.defaultColorIndex !== -1) {
                 that.setData({
                   currentColorIndex: that.data.defaultColorIndex
                 })
@@ -95,7 +100,7 @@ Page({
       }
     });
   },
-  sameImg: function (event) {
+  saveImg: function (event) {
     if (!this.data.draw) return false;
     wx.showLoading({
       title: '保存中',
@@ -230,6 +235,24 @@ Page({
         // 转发失败
       }
     }
+  },
+  onLongTrap: function (res) {
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['预览', '保存'],
+      success: function (res) {
+        console.log(res.tapIndex)
+        if (res.tapIndex == 0) {
+          that.previewImg();
+        }
+        if (res.tapIndex == 1) {
+          that.saveImg();
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    });
   }
 })
 
