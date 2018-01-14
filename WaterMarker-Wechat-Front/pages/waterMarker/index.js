@@ -149,9 +149,10 @@ Page({
     this.setData({
       currentColorIndex: id
     }, function () {
+      Config.waterMarkConfig.color = that.data.ColorMap[that.data.currentColorIndex][1];
       if (!that.data.draw) return false;
       WM.reRendering({
-        color: that.data.ColorMap[that.data.currentColorIndex][1]
+        color: Config.waterMarkConfig.color
       });
       that.log(1);
     });
@@ -221,13 +222,15 @@ Page({
     })
   },
   onShareAppMessage: function (res) {
+    
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
     return {
-      title: " ",
+      title: "江湖险恶，记得给证件加水印！",
       path: 'pages/waterMarker/index',
+      imageUrl:"../../images/shareBack.jpg",
       success: function (res) {
         // 转发成功
       },
