@@ -10,7 +10,22 @@ const FormItem = Form.Item;
 const waterMark = new WaterMark();
 message.config({
   top: 230
-})
+});
+
+
+var Config = {
+  colorMap: [
+    ['0', '#ffffff'],
+    ['1', '#979797'],
+    ['2', '#000000']
+  ],
+  waterMarkConfig: {
+    color: '#ffffff',
+    opacity: 0.5
+  },
+  text: '此证件仅供办理XX业务使用，他用无效',
+  debounceDelay: 200
+};
 
 class Container extends React.Component {
   constructor(props) {
@@ -18,6 +33,8 @@ class Container extends React.Component {
     this.state = {
       text: '此证件仅供办理XX业务使用，他用无效',
       lastText: '此证件仅供办理XX业务使用，他用无效', //作对比，以免反复画图
+      ColorMap: [],
+      currentColorIndex: -1,
       imgUrl: DEFAULT_IMG_URL
     };
     this.beforeUpload = this.beforeUpload.bind(this);
@@ -26,9 +43,36 @@ class Container extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleTextPressEnter = this.handleTextPressEnter.bind(this);
     this.handleTextOnBlur = this.handleTextOnBlur.bind(this);
+    this.handleChangeColor = this.handleChangeColor.bind(this);
     this.dataURLtoBlob = this.dataURLtoBlob.bind(this);
     this.validateBeforeDraw = this.validateBeforeDraw.bind(this);
     this.log = this.log.bind(this);
+  }
+  componentDidMount(){
+    var that = this;
+    Jquery.ajax({
+      url: '/api/waterConfig/1',
+      type: 'POST',
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function(data){
+        Config = Object.assign(Config, data);
+      },
+      complete: function(){
+        var colorMap = Config.colorMap,
+          waterMarkConfig = Config.waterMarkConfig,
+          defaultColor = colorMap.filter(function (color) {
+            return color[1] == waterMarkConfig.color;
+          });
+        that.setState({
+          ColorMap: colorMap,
+          defaultColorIndex: defaultColor.length ? defaultColor[0][0] : -1,
+          defaultText: Config.text,
+          text: Config.text,
+          lastText: Config.text
+        });
+      }
+    });
   }
   render() {
     const formItemLayout = {
@@ -42,6 +86,7 @@ class Container extends React.Component {
       }
     };
     var state = this.state;
+    var that = this;
     const isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
     return (
       <Layout className="p-waterMark" >
@@ -97,6 +142,23 @@ class Container extends React.Component {
                     </FormItem>
                   </Col>
                 </Row>
+                <Row className="formWrap">
+                  <Col sm={{ span: 16, offset: 1 }} xs={{ span: 22, offset: 1 }}>
+                    <FormItem
+                      label="水印颜色"
+                      colon={true}
+                      {...formItemLayout}>
+                      <div className="circleWrap">
+                        {
+                          state.ColorMap.map(function(color, index){
+                            return <span className={state.currentColorIndex == color[0] ? 'circle active': 'circle'} style={{background:color[1]}} id={color[0]} key={index}
+                            onClick={that.handleChangeColor}></span>
+                          })
+                        }
+                      </div>
+                    </FormItem>
+                  </Col>
+                </Row>
 
                 <img src={state.imgUrl} alt="" className="img" />
                 <p className="desc2">水印效果实时预览</p>
@@ -145,12 +207,17 @@ class Container extends React.Component {
           imgUrl: data
         };
         var height = Math.min(image.width, image.height);
-        Object.assign(config, that.getSomeConfig(height));
+        Object.assign(config, that.getSomeConfig(height), Config.waterMarkConfig);
         waterMark.mark(config).then(function () {
           that.updateImgurl();
           that.setState({
             lastText: that.state.text
           });
+          if (that.state.currentColorIndex === -1 && that.state.defaultColorIndex !== -1){
+            that.setState({
+              currentColorIndex: that.state.defaultColorIndex
+            })
+          }
         });
       }
     }
@@ -167,7 +234,7 @@ class Container extends React.Component {
     e.target.blur();
   }
   handleTextOnBlur(e) {
-    if (!this.validateBeforeDraw(true)) return;
+    if (!this.validateBeforeDraw(0)) return;
 
     var that = this;
     waterMark.reRendering({
@@ -181,7 +248,7 @@ class Container extends React.Component {
     });
   }
   handleSaveImg(e) {
-    if (!this.validateBeforeDraw()) return;
+    if (!this.validateBeforeDraw(2)) return;
     this.log(this.state.text, 3);
 
     window.isSupportDownload = 'download' in document.createElement('a');
@@ -200,6 +267,21 @@ class Container extends React.Component {
     var objurl = URL.createObjectURL(blob);
     target.download = 'SimpleTool.png';
     target.href = objurl;
+  }
+  handleChangeColor(e){
+    var id = e.target.id;
+    var that = this;
+
+    this.setState({
+      currentColorIndex: id
+    }, function(){
+      Config.waterMarkConfig.color = that.state.ColorMap[that.state.currentColorIndex][1];
+      this.validateBeforeDraw(1) && waterMark.reRendering({
+        color: Config.waterMarkConfig.color
+      }).then(function () {
+        that.updateImgurl();
+      });
+    })
   }
   getSomeConfig(imgHeight) {
     var fontSize = Math.floor(0.05 * imgHeight);
@@ -229,22 +311,26 @@ class Container extends React.Component {
       imgUrl: url
     })
   }
-  validateBeforeDraw(fromText) {
+  /**
+   * 
+   * @param {number} type  0-文字失焦 1-选择颜色 2-保存
+   */
+  validateBeforeDraw(type) {
 
     //判断水印文字是否为空
-    if (!this.state.text) {
+    if (type !== 1 && !this.state.text) {
       message.error('还是写点什么吧~');
       return false;
     }
 
     //判断是否传图
     if (this.state.imgUrl === DEFAULT_IMG_URL) {
-      !fromText && message.error('请先选择证件图片哦~');
+      type === 2 && message.error('请先选择证件图片哦~');
       return false;
     }
 
     //判断文字是否改变
-    if (fromText && this.state.text === this.state.lastText) {
+    if (type === 0 && this.state.text === this.state.lastText) {
       return false;
     }
 
