@@ -1,0 +1,11 @@
+.p-mobilePage .img {
+  margin-left: 5%;
+  margin-top: 20px;
+  width: 90%;
+}
+.p-mobilePage .word {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+}
