@@ -122,8 +122,6 @@
 .page__bd .btn-share{
   margin-top: 50rpx;
   color: #108EE9;
-  text-align: center;
-  vertical-align: middle;
   overflow: visible;
   background: none;
   border: 1px solid #108EE9;

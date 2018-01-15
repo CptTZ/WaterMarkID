@@ -228,7 +228,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: "江湖险恶，记得给证件加水印！",
+      title: "江湖险恶，勿忘证件加水印",
       path: 'pages/waterMarker/index',
       imageUrl:"../../images/shareBack.jpg",
       success: function (res) {
