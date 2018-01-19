@@ -95,6 +95,9 @@ Page({
                 })
               }
             });
+            that.setData({
+              inputFocus: true
+            });
           }
         })
       }
@@ -222,7 +225,7 @@ Page({
     })
   },
   onShareAppMessage: function (res) {
-    
+
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
@@ -230,7 +233,7 @@ Page({
     return {
       title: "江湖险恶，勿忘证件加水印",
       path: 'pages/waterMarker/index',
-      imageUrl:"../../images/shareBack.jpg",
+      imageUrl: "../../images/shareBack.jpg",
       success: function (res) {
         // 转发成功
       },

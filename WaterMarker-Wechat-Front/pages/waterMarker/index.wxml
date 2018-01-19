@@ -13,7 +13,7 @@
     <view class="section section1">
       <view class="left">文字</view>
       <view class="right">
-        <input class="{{inputFocus ? 'active': ''}}" value="{{defaultText}}" bindinput="handleTextChange" bindblur="handleTextBlur" bindfocus="handleTextFocus" />
+        <input class="{{inputFocus ? 'active': ''}}" value="{{defaultText}}" bindinput="handleTextChange" bindblur="handleTextBlur" bindfocus="handleTextFocus" focus="{{inputFocus}}"/>
       </view>
     </view>
     <view class="section">
