@@ -179,6 +179,10 @@ Page({
   },
   log: function (type) {
     var that = this;
+    var index = that.data.currentColorIndex;
+    if (index === -1){
+      index = that.data.defaultColorIndex;
+    }
     wx.request({
       url: 'https://www.simpletool.cn/api/log',
       method: 'POST',
@@ -187,7 +191,7 @@ Page({
         clientType: 0,
         logMessageType: type,
         logMessageContent: that.data.text,
-        waterColor: that.data.ColorMap[that.data.currentColorIndex][1]
+        waterColor: that.data.ColorMap[index][1]
       }
     });
   },
