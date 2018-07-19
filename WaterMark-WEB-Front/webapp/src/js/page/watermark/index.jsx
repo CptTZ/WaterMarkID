@@ -56,6 +56,15 @@ class Container extends React.Component {
     const isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(
       navigator.userAgent
     );
+    let previewCanvas = <div />;
+    if (state.imgUrl !== DEFAULT_IMG_URL) {
+      previewCanvas = (
+        <div>
+          <img src={state.imgUrl} alt="" className="img" />
+          <p className="desc2">水印效果实时预览</p>
+        </div>
+      );
+    }
     return (
       <Layout className="p-waterMark">
         <Header className="header">
@@ -117,9 +126,7 @@ class Container extends React.Component {
                     </FormItem>
                   </Col>
                 </Row>
-
-                <img src={state.imgUrl} alt="" className="img" />
-                <p className="desc2">水印效果实时预览</p>
+                {previewCanvas}
               </div>
             </Col>
           </Row>
