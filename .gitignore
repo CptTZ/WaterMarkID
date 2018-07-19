@@ -24,3 +24,5 @@ nbdist/
 
 node_modules/
 .DS_Store
+webapp/dist
+
