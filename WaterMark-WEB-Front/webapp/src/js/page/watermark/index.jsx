@@ -14,7 +14,6 @@ import {
   Icon
 } from "antd";
 import WaterMark from "./watermark";
-import Jquery from "jquery";
 const { Header, Content, Footer } = Layout;
 const FormItem = Form.Item;
 
@@ -31,7 +30,7 @@ class Container extends React.Component {
       lastText: "此证件仅供办理XX业务使用，他用无效", //作对比，以免反复画图
       imgUrl: DEFAULT_IMG_URL
     };
-    this.beforeUpload = this.beforeUpload.bind(this);
+    this.previewWaterMark = this.previewWaterMark.bind(this);
     this.getSomeConfig = this.getSomeConfig.bind(this);
     this.handleSaveImg = this.handleSaveImg.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -109,7 +108,7 @@ class Container extends React.Component {
                   <Col sm={{ span: 2, offset: 1 }} xs={{ span: 22, offset: 1 }}>
                     <FormItem style={{ textAlign: "right" }}>
                       <Upload
-                        beforeUpload={this.beforeUpload}
+                        beforeUpload={this.previewWaterMark}
                         showUploadList={false}
                       >
                         <Button type="primary" className="btn">
@@ -138,7 +137,7 @@ class Container extends React.Component {
       </Layout>
     );
   }
-  beforeUpload(file, fileList) {
+  previewWaterMark(file, fileList) {
     var that = this;
     var reader = new FileReader();
     if (file && file.type.match("image.*")) {
@@ -220,7 +219,7 @@ class Container extends React.Component {
     var strDataURI = imgData.substr(22, imgData.length);
     var blob = this.dataURLtoBlob(imgData);
     var objurl = URL.createObjectURL(blob);
-    target.download = "SimpleTool.png";
+    target.download = strDataURI + ".png";
     target.href = objurl;
   }
   getSomeConfig(imgHeight) {
@@ -272,17 +271,11 @@ class Container extends React.Component {
     return true;
   }
   log(text, logMessageType) {
-    Jquery.ajax({
-      url: "/api/log",
-      type: "POST",
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify({
-        clientType: 1,
-        logMessageType: logMessageType,
-        logMessageContent: text
-      })
-    });
+    console.log(JSON.stringify({
+      clientType: 1,
+      logMessageType: logMessageType,
+      logMessageContent: text
+    }));
   }
 }
 
