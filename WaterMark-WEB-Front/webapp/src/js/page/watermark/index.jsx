@@ -13,11 +13,11 @@ import {
   message,
   Icon
 } from "antd";
-import WaterMark from "./watermark";
+import WM from "./watermark";
 const { Header, Content, Footer } = Layout;
 const FormItem = Form.Item;
 
-const waterMark = new WaterMark();
+const waterMark = new WM();
 message.config({
   top: 230
 });
@@ -154,11 +154,11 @@ class Container extends React.Component {
         var config = {
           text: that.state.text,
           id: "myCanvas",
-          color: "#f9f9f9",
+          color: "#fefefe",
           xStart: 0,
           yStart: -(image.width * 0.71),
           rotate: 45,
-          opacity: 0.4,
+          opacity: 0.2,
           width: image.width,
           height: image.height,
           imgUrl: data
