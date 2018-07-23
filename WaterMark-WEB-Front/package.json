@@ -8,10 +8,6 @@
     "dev": "webpack  --display-modules --profile --progress --colors --display-error-details",
     "dev:hrm": "webpack-dev-server"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/cobber/WaterMarker.git"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

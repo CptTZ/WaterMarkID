@@ -11,7 +11,7 @@ import {
   Menu,
   Upload,
   message,
-  Icon
+  InputNumber
 } from "antd";
 import WM from "./watermark";
 const { Header, Content, Footer } = Layout;
@@ -27,13 +27,15 @@ class Container extends React.Component {
     super(props);
     this.state = {
       text: "此证件仅供办理XX业务使用，他用无效",
-      lastText: "此证件仅供办理XX业务使用，他用无效", //作对比，以免反复画图
+      lastText: "此证件仅供办理XX业务使用，他用无效",
+      opacity: 0.3,
       imgUrl: DEFAULT_IMG_URL
     };
     this.previewWaterMark = this.previewWaterMark.bind(this);
     this.getSomeConfig = this.getSomeConfig.bind(this);
     this.handleSaveImg = this.handleSaveImg.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleOpacityChange = this.handleOpacityChange.bind(this);
     this.handleTextPressEnter = this.handleTextPressEnter.bind(this);
     this.handleTextOnBlur = this.handleTextOnBlur.bind(this);
     this.dataURLtoBlob = this.dataURLtoBlob.bind(this);
@@ -67,7 +69,6 @@ class Container extends React.Component {
     return (
       <Layout className="p-waterMark">
         <Header className="header">
-          <div className="logo" />
           {!isMobile && (
             <Menu
               mode="horizontal"
@@ -82,9 +83,6 @@ class Container extends React.Component {
           <Row>
             <Col span={22} offset={1}>
               <div className="content">
-                <div className="title">
-                  <div className="logo" />
-                </div>
                 <p className="desc">
                   加水印操作在本地完成，任何证件信息不会上传到网站，请放心使用
                 </p>
@@ -94,16 +92,32 @@ class Container extends React.Component {
                     sm={{ span: 16, offset: 1 }}
                     xs={{ span: 22, offset: 1 }}
                   >
-                    <FormItem label="水印文字" colon={true} {...formItemLayout}>
-                      <Input
-                        value={state.text}
-                        className="input-word"
-                        onChange={this.handleTextChange}
-                        onBlur={this.handleTextOnBlur}
-                        onPressEnter={this.handleTextPressEnter}
-                        ref="text"
-                      />
-                    </FormItem>
+                    <Form>
+                      <FormItem
+                        label="水印文字"
+                        colon={true}
+                        {...formItemLayout}
+                      >
+                        <Input
+                          value={state.text}
+                          className="input-word"
+                          onChange={this.handleTextChange}
+                          onBlur={this.handleTextOnBlur}
+                          onPressEnter={this.handleTextPressEnter}
+                          ref="text"
+                        />
+                      </FormItem>
+                      <FormItem label="透明度" colon={true} {...formItemLayout}>
+                        <InputNumber
+                          defaultValue={30}
+                          min={0}
+                          max={100}
+                          formatter={value => `${value}%`}
+                          parser={value => value.replace("%", "")}
+                          onChange={this.handleOpacityChange}
+                        />
+                      </FormItem>
+                    </Form>
                   </Col>
                   <Col sm={{ span: 2, offset: 1 }} xs={{ span: 22, offset: 1 }}>
                     <FormItem style={{ textAlign: "right" }}>
@@ -158,7 +172,7 @@ class Container extends React.Component {
           xStart: 0,
           yStart: -(image.width * 0.71),
           rotate: 45,
-          opacity: 0.2,
+          opacity: that.state.opacity,
           width: image.width,
           height: image.height,
           imgUrl: data
@@ -182,6 +196,19 @@ class Container extends React.Component {
       text: value
     });
   }
+  handleOpacityChange(e) {
+    var that = this;
+    this.setState({
+      opacity: e / 100
+    });
+    waterMark
+      .reRendering({
+        opacity: this.state.opacity
+      })
+      .then(function() {
+        that.updateImgurl();
+      });
+  }
   handleTextPressEnter(e) {
     e.target.blur();
   }
@@ -198,7 +225,6 @@ class Container extends React.Component {
         that.setState({
           lastText: that.state.text
         });
-        message.success("水印文字已更新~");
       });
   }
   handleSaveImg(e) {
@@ -216,7 +242,7 @@ class Container extends React.Component {
       format: "png",
       multiplier: 4
     });
-    var strDataURI = imgData.substr(22, imgData.length);
+    var strDataURI = new Date().toISOString();
     var blob = this.dataURLtoBlob(imgData);
     var objurl = URL.createObjectURL(blob);
     target.download = strDataURI + ".png";
@@ -271,11 +297,13 @@ class Container extends React.Component {
     return true;
   }
   log(text, logMessageType) {
-    console.log(JSON.stringify({
-      clientType: 1,
-      logMessageType: logMessageType,
-      logMessageContent: text
-    }));
+    console.log(
+      JSON.stringify({
+        clientType: 1,
+        logMessageType: logMessageType,
+        logMessageContent: text
+      })
+    );
   }
 }
 
